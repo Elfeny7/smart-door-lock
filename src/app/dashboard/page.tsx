@@ -7,7 +7,6 @@ export default function Dashboard() {
         <div className="h-screen">
           <SidebarComponent activePage="dashboard"/>
         </div>
-        
       </div>
     </>
   );

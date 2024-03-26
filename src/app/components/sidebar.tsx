@@ -40,7 +40,7 @@ export default function SidebarComponent(props: SidebarProps) {
                     <Sidebar.Item className={doorsStyle} href="doors">
                         Pintu
                     </Sidebar.Item>
-                    <Sidebar.Item className={logsStyle} href="#">
+                    <Sidebar.Item className={logsStyle} href="logs">
                         Log
                     </Sidebar.Item>
                 </Sidebar.ItemGroup>

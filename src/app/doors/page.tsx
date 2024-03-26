@@ -1,3 +1,4 @@
+import CardComponent from "../components/card";
 import SidebarComponent from "../components/sidebar";
 
 export default function Doors() {
@@ -7,7 +8,9 @@ export default function Doors() {
         <div className="h-screen">
           <SidebarComponent activePage="doors" />
         </div>
-        
+        <div className="p-10">
+          <CardComponent />
+        </div>
       </div>
     </>
   );
