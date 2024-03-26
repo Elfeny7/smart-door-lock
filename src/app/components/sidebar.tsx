@@ -26,8 +26,8 @@ export default function SidebarComponent(props: SidebarProps) {
     }
 
     return (
-        <Sidebar aria-label="Sidebar with logo branding example" className='shadow-md'>
-            <h1 className='text-2xl font-bold'>HELLODOOR</h1>
+        <Sidebar aria-label="Sidebar with logo branding example" className='shadow-lg'>
+            <h1 className='text-2xl font-bold mx-4'>HELLODOOR</h1>
             <hr className='my-4' />
             <Sidebar.Items>
                 <Sidebar.ItemGroup>

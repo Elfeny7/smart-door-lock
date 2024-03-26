@@ -3,6 +3,7 @@ import type { Config } from "tailwindcss";
 const config: Config = {
   content: [
     "./node_modules/flowbite-react/lib/**/*.js",
+    "./node_modules/tw-elements-react/dist/js/**/*.js",
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -17,7 +18,8 @@ const config: Config = {
     },
   },
   plugins: [
-    require("flowbite/plugin")
+    require("flowbite/plugin"),
+    require("tw-elements-react/dist/plugin.cjs")
   ],
 };
 export default config;
