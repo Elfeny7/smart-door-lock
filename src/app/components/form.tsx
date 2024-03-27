@@ -1,6 +1,4 @@
 import React from 'react';
-import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
-import { useRef, useState } from "react";
 
 const FormComponent = () => {
   return (
@@ -32,7 +30,6 @@ const FormComponent = () => {
               <option value="">Pilih peran</option>
               <option value="Admin">Admin</option>
               <option value="User">User</option>
-              <option value="Guest">Guest</option>
             </select>
           </div>
           <div className="flex items-center justify-between">
