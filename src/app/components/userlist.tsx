@@ -1,63 +1,151 @@
-// pages/TablePage.js
 
-import React from 'react';
+"use client";
 
-const TablePage = () => {
+import { Checkbox, Table, Select, Button } from "flowbite-react";
+import { HiTrash,HiOutlinePencil } from "react-icons/hi";
+
+function UserListComponent() {
   return (
-    <div className="container mx-10 mt-1">
-      <h1 className="text-2xl font-bold mb-4">Data Pengguna</h1>
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
-          <tr>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              No
-            </th>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Nama
-            </th>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Email
-            </th>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Telp
-            </th>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Role
-            </th>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Aksi
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-
-          {/* Data Pengguna */}
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap">1</td>
-            <td className="px-6 py-4 whitespace-nowrap">John Doe</td>
-            <td className="px-6 py-4 whitespace-nowrap">john@example.com</td>
-            <td className="px-6 py-4 whitespace-nowrap">1234567890</td>
-            <td>
-            <select id="role" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Pilih role</option>
-              <option value="Admin">Admin</option>
-              <option value="User">User</option>
-            </select>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                <i className="fas fa-edit mr-2"></i> 
+    <div className="overflow-x-auto">
+      <Table hoverable>
+        <Table.Head>
+          <Table.HeadCell>No</Table.HeadCell>
+          <Table.HeadCell>Name</Table.HeadCell>
+          <Table.HeadCell>Email</Table.HeadCell>
+          <Table.HeadCell>Telp</Table.HeadCell>
+          <Table.HeadCell>Role</Table.HeadCell>
+          <Table.HeadCell>Action</Table.HeadCell>
+        </Table.Head>
+        <Table.Body className="divide-y">
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'1'}
+            </Table.Cell>
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'Hadian Nelvi'}
+            </Table.Cell>
+            <Table.Cell>Hadian@gmail.com</Table.Cell>
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'085264'}
+            </Table.Cell>
+            <Table.Cell><Select id="role">
+                <option value="admin">Admin</option>    
+                <option value="user">User</option>
+              </Select>
+              </Table.Cell>
+            <Table.Cell>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded items-center mr-2">
+              <HiOutlinePencil className="mr-2 h-5 w-5" />
               </button>
-              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
-                <i className="fas fa-trash-alt mr-2"></i> 
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded items-center mr-2">
+              <HiTrash className="mr-2 h-5 w-5" />
               </button>
-            </td>
-          </tr>
-          {/* End Data Pengguna */}
-        </tbody>
-      </table>
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'2'}
+            </Table.Cell>
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'Hadian Nelvi'}
+            </Table.Cell>
+            <Table.Cell>Hadian@gmail.com</Table.Cell>
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'085264'}
+            </Table.Cell>
+            <Table.Cell><Select id="role">
+                <option value="admin">Admin</option>    
+                <option value="user">User</option>
+              </Select>
+              </Table.Cell>
+            <Table.Cell>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded items-center mr-2">
+              <HiOutlinePencil className="mr-2 h-5 w-5" />
+              </button>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded items-center mr-2">
+              <HiTrash className="mr-2 h-5 w-5" />
+              </button>
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'3'}
+            </Table.Cell>
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'Hadian Nelvi'}
+            </Table.Cell>
+            <Table.Cell>Hadian@gmail.com</Table.Cell>
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'085264'}
+            </Table.Cell>
+            <Table.Cell><Select id="role">
+                <option value="admin">Admin</option>    
+                <option value="user">User</option>
+              </Select>
+              </Table.Cell>
+            <Table.Cell>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded items-center mr-2">
+              <HiOutlinePencil className="mr-2 h-5 w-5" />
+              </button>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded items-center mr-2">
+              <HiTrash className="mr-2 h-5 w-5" />
+              </button>
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'4'}
+            </Table.Cell>
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'Hadian Nelvi'}
+            </Table.Cell>
+            <Table.Cell>Hadian@gmail.com</Table.Cell>
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'085264'}
+            </Table.Cell>
+            <Table.Cell><Select id="role">
+                <option value="admin">Admin</option>    
+                <option value="user">User</option>
+              </Select>
+              </Table.Cell>
+            <Table.Cell>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded items-center mr-2">
+              <HiOutlinePencil className="mr-2 h-5 w-5" />
+              </button>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded items-center mr-2">
+              <HiTrash className="mr-2 h-5 w-5" />
+              </button>
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'5'}
+            </Table.Cell>
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'Hadian Nelvi'}
+            </Table.Cell>
+            <Table.Cell>Hadian@gmail.com</Table.Cell>
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {'085264'}
+            </Table.Cell>
+            <Table.Cell><Select id="role">
+                <option value="admin">Admin</option>    
+                <option value="user">User</option>
+              </Select>
+              </Table.Cell>
+            <Table.Cell>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded items-center mr-2 ">
+              <HiOutlinePencil className="mr-2 h-5 w-5" />
+              </button>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded items-center mr-2">
+              <HiTrash className="mr-2 h-5 w-5" />
+              </button>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
     </div>
   );
-};
+}
 
-export default TablePage;
+export default UserListComponent;
