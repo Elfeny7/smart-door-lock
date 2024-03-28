@@ -7,6 +7,7 @@ interface ButtonProps {
     text: string;
     size?: string;
     color?: string;
+    link?: string;
 }
 
 const customTheme: CustomFlowbiteTheme = {
@@ -14,6 +15,7 @@ const customTheme: CustomFlowbiteTheme = {
         color: {
             primary: "bg-blue-500 hover:bg-blue-600 text-white font-bold",
             greenFill: "bg-green-500 hover:bg-green-600 text-white font-bold",
+            redFill: "bg-red-600 hover:bg-red-800 text-white font-bold",
         },
         size: {
             door: "px-20 py-2 ",
@@ -25,15 +27,11 @@ export default function ButtonComponent(props: ButtonProps) {
     const { text } = props;
     const { size } = props;
     const { color } = props;
+    const { link } = props;
 
-    let colorButton: any = "primary";
-
-    if (size != "door") {
-        colorButton = color;
-    }
     return (
         <Flowbite theme={{ theme: customTheme }}>
-            <Button onClick={() => console.log('clicked!')} color={colorButton} size={size}>{text}</Button>
+            <Button onClick={() => console.log('clicked!')} color={color} size={size} href={`doors/${link}`}>{text}</Button>
         </Flowbite>
     );
 }

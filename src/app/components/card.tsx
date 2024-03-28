@@ -3,6 +3,7 @@ import { Card } from "flowbite-react";
 import ButtonComponent from "./button";
 
 interface CardProps {
+    doorsId?: string;
     title: string;
     floor: string;
     name: string;
@@ -10,7 +11,8 @@ interface CardProps {
 }
 
 export default function CardComponent(props: CardProps) {
-    const { title, floor, name, desc } = props;
+    const { title, floor, name, desc, doorsId } = props;
+    var linked = doorsId || "error";
 
     return (
         <Card>
@@ -22,7 +24,7 @@ export default function CardComponent(props: CardProps) {
                 <p className="font-normal text-gray-700 dark:text-gray-400">{desc}</p>
             </div>
             <div className="mt-auto mx-auto">
-                <ButtonComponent text="Detail" size="door"/>
+                <ButtonComponent text="Detail" size="door" color="primary" link={linked} />
             </div>
         </Card>
     );
