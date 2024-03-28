@@ -11,15 +11,13 @@ export default function MyPage() {
         <div className="h-screen">
           <SidebarComponent />
         </div>
-        <div>
+         {/* <div>
           <ButtonComponent />
-        </div>
-        {/* <div>
-          <UserListComponent />
-        </div> */}
-         <div>
-          <FormComponent />
-        </div> 
+        </div>  */}
+        <div className="flex flex-grow justify-center items-center"> {/* Meletakkan UserListComponent di tengah */}
+        {/* <UserListComponent /> */}
+        <FormComponent />
+      </div>
       </div>
     </>
   );
