@@ -12,7 +12,7 @@ interface CardProps {
 
 export default function CardComponent(props: CardProps) {
     const { title, floor, name, desc, doorsId } = props;
-    var linked = doorsId || "error";
+    var linked = "doors/" + doorsId || "error";
 
     return (
         <Card>

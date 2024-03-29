@@ -31,7 +31,7 @@ export default function ButtonComponent(props: ButtonProps) {
 
     return (
         <Flowbite theme={{ theme: customTheme }}>
-            <Button onClick={() => console.log('clicked!')} color={color} size={size} href={`doors/${link}`}>{text}</Button>
+            <Button onClick={() => console.log('clicked!')} color={color} size={size} href={link}>{text}</Button>
         </Flowbite>
     );
 }
