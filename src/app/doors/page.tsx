@@ -28,8 +28,6 @@ export default function Doors() {
               desc="Heaven Floor, be afraid of god, do the right thing to doa asdasd asdsadsadsad" />
             <CardComponent title="Pintu Surga" floor="Floor 9" name="LPR 7" doorsId="131"
               desc="Heaven Floor, be afraid of god, do the right thing to do" />
-            <CardComponent title="Pintu Surga" floor="Floor 9" name="LPR 7"
-              desc="Heaven Floor, be afraid of god, do the right thing to do" />
           </div>
         </div>
       </div>

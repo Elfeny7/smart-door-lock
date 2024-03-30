@@ -19,8 +19,9 @@ const customTheme: CustomFlowbiteTheme = {
         },
         size: {
             door: "px-20 py-2 ",
+            back: "px-2.5 pt-1 pb-1.5"
         }
-    },
+    },  
 };
 
 export default function ButtonComponent(props: ButtonProps) {
