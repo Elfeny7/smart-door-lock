@@ -1,4 +1,5 @@
 import ButtonComponent from "@/app/components/button";
+import DoorUserTableComponent from "@/app/components/door-user-table";
 import DropdownComponent from "@/app/components/dropdown";
 
 export default function DoorsDetail() {
@@ -10,7 +11,7 @@ export default function DoorsDetail() {
                     <div className="font-bold text-3xl">Pintu Syurga</div>
                 </div>
                 <div className="flex flex-row gap-8">
-                    <div className="flex-2 bg-white rounded-lg px-12 py-12 h-fit w-[30vw]">
+                    <div className="flex-2 bg-white rounded-lg px-12 py-12 h-fit w-[25vw]">
                         <div className="flex flex-col gap-2">
                             <div className="flex flex-col pb-4">
                                 <h1 className="font-bold text-2xl">Door Details</h1>
@@ -41,13 +42,13 @@ export default function DoorsDetail() {
                         </div>
                     </div>
                     <div className="flex-1 bg-white rounded-lg min-h-fit px-12 py-12 h-fit">
-                        <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-8">
                             <h1 className="font-bold text-2xl">Users</h1>
                             <div className="flex flex-row gap-4">
                                 <ButtonComponent text="New User" color="greenFill" />
-                                <DropdownComponent />
-                                <DropdownComponent />
+                                <DropdownComponent title="Filter" items={["Only Mahasiswa", "Only Dosen"]} />
                             </div>
+                            <DoorUserTableComponent />
                         </div>
                     </div>
                 </div>
