@@ -16,12 +16,12 @@ export default function Doors() {
             <div className="flex flex-row pl-4 justify-between">
               <SearchComponent />
               <div className="mr-4">
-                <ButtonComponent text="+ Add New Door" color="greenFill"/>
+                <ButtonComponent text="+ Add New Door" color="primary"/>
               </div>
             </div>
           </div>
           <div className="grid grid-cols-4 gap-4">
-            <CardComponent title="Pintu Neraka" floor="Floor 8" name="LPR 8"
+            <CardComponent title="Pintu Neyraka" floor="Floor 8" name="LPR 8"
               desc="Floor that directly send you to the hellasdsadsadasd asdasdsad" />
             <CardComponent title="Pintu Surga" floor="Floor 9" name="LPR 7"
               desc="Heaven Floor, be afraid of god, do the right thing to doa asdasd asdsadsadsad" />

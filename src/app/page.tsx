@@ -15,8 +15,8 @@ export default function MyPage() {
           <ButtonComponent />
         </div>  */}
         <div className="flex flex-grow justify-center items-center"> {/* Meletakkan UserListComponent di tengah */}
-        {/* <UserListComponent /> */}
-        <FormComponent />
+         <UserListComponent />  
+        {/* <FormComponent />   */}
       </div>
       </div>
     </>
