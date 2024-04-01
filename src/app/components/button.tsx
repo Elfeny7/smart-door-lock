@@ -4,7 +4,7 @@ import { Checkbox, Flowbite } from "flowbite-react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { useRef, useState } from "react";
 import { HiTrash, HiOutlinePencil, HiOutlineExclamationCircle } from "react-icons/hi";
-import ComponentModal from "./modal";
+import EditDetailDoorModal, { AddUserDoorModal } from "./modal";
 
 interface ButtonProps {
   text: string;
@@ -17,6 +17,7 @@ interface ButtonModalProps {
   text: string;
   color?: string;
   link?: string;
+  whatFor?: string;
 }
 
 const customTheme: CustomFlowbiteTheme = {
@@ -39,6 +40,7 @@ export default function ButtonComponent(props: ButtonProps) {
   const { color } = props;
   const { link } = props;
 
+
   return (
     <Flowbite theme={{ theme: customTheme }}>
       <Button onClick={() => { }} color={color} size={size} href={link}>{text}</Button>
@@ -48,21 +50,19 @@ export default function ButtonComponent(props: ButtonProps) {
 
 export function ButtonModalComponent(props: ButtonModalProps) {
   const [openModal, setOpenModal] = useState(false);
-  const [email, setEmail] = useState('');
   const { text } = props;
   const { color } = props;
+  const { whatFor } = props;
 
   function onCloseModal() {
     setOpenModal(false);
-    setEmail('');
   }
 
   return (
     <Flowbite theme={{ theme: customTheme }}>
       <Button onClick={() => { setOpenModal(true) }} color={color}>{text}</Button>
-      <ComponentModal openModal={openModal} onCloseModal={onCloseModal} email={email} setEmail={setEmail} />
+      {whatFor == "Edit Doors Detail" ? <EditDetailDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <AddUserDoorModal openModal={openModal} onCloseModal={onCloseModal} />}
     </Flowbite>
-
   );
 
 }
