@@ -34,7 +34,7 @@ export default function SidebarComponent(props: SidebarProps) {
                     <Sidebar.Item className={dashboardStyle} href="dashboard" >
                         Dashboard
                     </Sidebar.Item>
-                    <Sidebar.Item className={usersStyle} href="#" >
+                    <Sidebar.Item className={usersStyle} href="users" >
                         User
                     </Sidebar.Item>
                     <Sidebar.Item className={doorsStyle} href="doors">
