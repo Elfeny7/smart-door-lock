@@ -1,6 +1,7 @@
-import ButtonComponent from "@/app/components/button";
+import ButtonComponent, { ButtonModalComponent } from "@/app/components/button";
 import DoorUserTableComponent from "@/app/components/door-user-table";
 import DropdownComponent from "@/app/components/dropdown";
+import ComponentModal from "@/app/components/modal";
 
 export default function DoorsDetail() {
     return (
@@ -36,16 +37,22 @@ export default function DoorsDetail() {
                                 <h2 className="text-lg font-bold">Description</h2>
                                 <h2>Heaven Floor, be afraid of god, do the right thing to do</h2>
                             </div>
-                            <div className="mx-auto my-auto mt-8">
-                                <ButtonComponent text="Edit Detail" color="primary" />
+                            <div className="flex flex-row my-auto gap-4 mx-auto">
+                                <div className="mt-8">
+                                    <ButtonModalComponent text="Edit Detail" color="primary" />
+                                </div>
+                                <div className="mt-8">
+                                    <ButtonComponent text="Delete Door" color="redFill" />
+                                </div>
                             </div>
+
                         </div>
                     </div>
                     <div className="flex-1 bg-white rounded-lg min-h-fit px-12 py-12 h-fit">
                         <div className="flex flex-col gap-6">
                             <h1 className="font-bold text-2xl">Users</h1>
                             <div className="flex flex-row gap-4">
-                                <ButtonComponent text="New User" color="greenFill" />
+                                <ButtonModalComponent text="Add User" color="greenFill"/>
                                 <DropdownComponent title="Filter" items={["Only Mahasiswa", "Only Dosen"]} />
                             </div>
                             <DoorUserTableComponent />
