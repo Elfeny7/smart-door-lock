@@ -3,6 +3,7 @@
 import { Button, Checkbox, Label, Modal, TextInput, Textarea } from "flowbite-react";
 import { useState } from "react";
 import ButtonComponent from "./button";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 interface EditDetailDoorModalProps {
     openModal: any;
@@ -10,6 +11,11 @@ interface EditDetailDoorModalProps {
 }
 
 interface AddUserDoorModalProps {
+    openModal: any;
+    onCloseModal: any;
+}
+
+interface DialogDecisionModalProps {
     openModal: any;
     onCloseModal: any;
 }
@@ -90,25 +96,25 @@ export function AddUserDoorModal(props: AddUserDoorModalProps) {
                         <div className="mb-2 block">
                             <Label value="Id User" />
                         </div>
-                        <TextInput id="iduser"/>
+                        <TextInput id="iduser" />
                     </div>
                     <div>
                         <div className="mb-2 block">
                             <Label value="Name" />
                         </div>
-                        <TextInput id="name"/>
+                        <TextInput id="name" />
                     </div>
                     <div>
                         <div className="mb-2 block">
                             <Label value="Status" />
                         </div>
-                        <TextInput id="status"/>
+                        <TextInput id="status" />
                     </div>
                     <div>
                         <div className="mb-2 block">
                             <Label value="Email" />
                         </div>
-                        <TextInput id="email"/>
+                        <TextInput id="email" />
                     </div>
                     <div className="w-full">
                         <div className="mt-6">
@@ -118,5 +124,34 @@ export function AddUserDoorModal(props: AddUserDoorModalProps) {
                 </div>
             </Modal.Body>
         </Modal>
+    );
+}
+
+export function DialogDecisionModal(props: DialogDecisionModalProps) {
+    const { openModal } = props;
+    const { onCloseModal } = props;
+
+    return (
+        <>
+            <Modal show={openModal} size="md" onClose={onCloseModal} popup>
+                <Modal.Header />
+                <Modal.Body>
+                    <div className="text-center">
+                        <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                        <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                            Are you sure you want to delete this product?
+                        </h3>
+                        <div className="flex justify-center gap-4">
+                            <Button color="failure" onClick={onCloseModal}>
+                                {"Yes, I'm sure"}
+                            </Button>
+                            <Button color="gray" onClick={onCloseModal}>
+                                No, cancel
+                            </Button>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
+        </>
     );
 }
