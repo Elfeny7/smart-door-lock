@@ -4,7 +4,7 @@ import { Checkbox, Flowbite } from "flowbite-react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { useRef, useState } from "react";
 import { HiTrash, HiOutlinePencil, HiOutlineExclamationCircle } from "react-icons/hi";
-import EditDetailDoorModal, { AddUserDoorModal, DialogDecisionModal } from "./modal";
+import EditDetailDoorModal, { AddDoorModal, AddUserDoorModal, DialogDecisionModal } from "./modal";
 
 interface ButtonProps {
   text: string;
@@ -61,6 +61,7 @@ export function ButtonModalComponent(props: ButtonModalProps) {
   return (
     <Flowbite theme={{ theme: customTheme }}>
       <Button onClick={() => { setOpenModal(true) }} color={color}>{text}</Button>
+      {whatFor == "Add Door" ? <AddDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1> }
       {whatFor == "Edit Doors Detail" ? <EditDetailDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1> }
       {whatFor == "Add User Detail" ? <AddUserDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1> }
       {whatFor == "Delete" ? <DialogDecisionModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1> }
