@@ -42,7 +42,7 @@ export default function DoorsDetail() {
                                 <h2>Heaven Floor, be afraid of god, do the right thing to do</h2>
                             </div>
                             <hr />
-                            <div className="flex flex-row my-auto gap-2 mx-auto mt-4">
+                            <div className="flex flex-row my-auto gap-1 mx-auto mt-4">
                                 <ButtonModalComponent text="Edit Detail" color="primary" whatFor="Edit Doors Detail"/>
                                 <ButtonModalComponent text="Delete Door" color="redFill" whatFor="Delete"/>
                             </div>
@@ -52,7 +52,7 @@ export default function DoorsDetail() {
                     <div className="flex-1 bg-white rounded-lg min-h-fit px-12 py-12 h-fit">
                         <div className="flex flex-col gap-6">
                             <h1 className="font-bold text-2xl">Users</h1>
-                            <div className="flex flex-row gap-2">
+                            <div className="flex flex-row gap-1">
                                 <ButtonModalComponent text="Add User" color="greenFill" whatFor="Add User Detail"/>
                                 <DropdownComponent title="Filter" items={["Only Mahasiswa", "Only Dosen"]} />
                             </div>
