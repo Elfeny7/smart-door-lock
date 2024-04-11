@@ -1,58 +1,90 @@
 'use client';
 import type { CustomFlowbiteTheme } from "flowbite-react";
-import { Flowbite } from "flowbite-react";
+import { Checkbox, Flowbite } from "flowbite-react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { useRef, useState } from "react";
-import { HiTrash,HiOutlinePencil,HiOutlineExclamationCircle  } from "react-icons/hi";
+import { HiTrash, HiOutlinePencil, HiOutlineExclamationCircle } from "react-icons/hi";
+import EditDetailDoorModal, { AddDoorModal, AddUserDoorModal, DialogDecisionModal } from "./modal";
 
 interface ButtonProps {
-    text: string;
-    size?: string;
-    color?: string;
-    link?: string;
+  text: string;
+  size?: string;
+  color?: string;
+  link?: string;
+}
+
+interface ButtonModalProps {
+  text: string;
+  color?: string;
+  link?: string;
+  whatFor?: string;
 }
 
 const customTheme: CustomFlowbiteTheme = {
-    button: {
-        color: {
-            primary: "bg-blue-500 hover:bg-blue-600 text-white font-bold",
-            greenFill: "bg-green-500 hover:bg-green-600 text-white font-bold",
-            redFill: "bg-red-600 hover:bg-red-800 text-white font-bold",
-        },
-        size: {
-            door: "px-20 py-2 ",
-            back: "px-2.5 pt-1 pb-1.5"
-        }
-    },  
+  button: {
+    color: {
+      primary: "bg-blue-500 hover:bg-blue-600 text-white font-bold",
+      greenFill: "bg-green-500 hover:bg-green-600 text-white font-bold",
+      redFill: "bg-red-600 hover:bg-red-800 text-white font-bold",
+    },
+    size: {
+      door: "px-20 py-2 ",
+      back: "px-2.5 pt-1 pb-1.5"
+    }
+  },
 };
 
 export default function ButtonComponent(props: ButtonProps) {
-    const { text } = props;
-    const { size } = props;
-    const { color } = props;
-    const { link } = props;
+  const { text } = props;
+  const { size } = props;
+  const { color } = props;
+  const { link } = props;
 
-    return (
-        <Flowbite theme={{ theme: customTheme }}>
-            <Button onClick={() => console.log('clicked!')} color={color} size={size} href={link}>{text}</Button>
-        </Flowbite>
-    );
+
+  return (
+    <Flowbite theme={{ theme: customTheme }}>
+      <Button onClick={() => { }} color={color} size={size} href={link}>{text}</Button>
+    </Flowbite>
+  );
 }
-export function CreateButtonComponent(props: ButtonProps){
-    const { text } = props;
-    const { size } = props;
-    const { color } = props;
-    const [openModal, setOpenModal] = useState(false);
+
+export function ButtonModalComponent(props: ButtonModalProps) {
+  const [openModal, setOpenModal] = useState(false);
+  const { text } = props;
+  const { color } = props;
+  const { whatFor } = props;
+
+  function onCloseModal() {
+    setOpenModal(false);
+  }
+
+  return (
+    <Flowbite theme={{ theme: customTheme }}>
+      <Button onClick={() => { setOpenModal(true) }} color={color}>{text}</Button>
+      {whatFor == "Add Door" ? <AddDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1> }
+      {whatFor == "Edit Doors Detail" ? <EditDetailDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1> }
+      {whatFor == "Add User Detail" ? <AddUserDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1> }
+      {whatFor == "Delete" ? <DialogDecisionModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1> }
+    </Flowbite>
+  );
+
+}
+
+export function CreateButtonComponent(props: ButtonProps) {
+  const { text } = props;
+  const { size } = props;
+  const { color } = props;
+  const [openModal, setOpenModal] = useState(false);
   const emailInputRef = useRef<HTMLInputElement>(null);
 
-    let colorButton: any = "primary";
+  let colorButton: any = "primary";
 
-    if (size != "door") {
-        colorButton = color;
-    }
-    return (
-        <Flowbite theme={{ theme: customTheme }}>
-            <Button onClick={() => setOpenModal(true)} color={colorButton} size={size}>{text}</Button>
+  if (size != "door") {
+    colorButton = color;
+  }
+  return (
+    <Flowbite theme={{ theme: customTheme }}>
+      <Button onClick={() => setOpenModal(true)} color={colorButton} size={size}>{text}</Button>
       <Modal show={openModal} size="md" popup onClose={() => setOpenModal(false)} initialFocus={emailInputRef}>
         <Modal.Header />
         <Modal.Body>
@@ -68,7 +100,7 @@ export function CreateButtonComponent(props: ButtonProps){
               <div className="mb-2 block">
                 <Label htmlFor="email" value="email" />
               </div>
-              <TextInput id="email"  required />
+              <TextInput id="email" required />
             </div>
             <div>
               <div className="mb-2 block">
@@ -98,24 +130,24 @@ export function CreateButtonComponent(props: ButtonProps){
           </div>
         </Modal.Body>
       </Modal>
-        </Flowbite>
-    );
+    </Flowbite>
+  );
 }
 
-export function DeleteButtonComponent(props: ButtonProps){
-    const { text } = props;
-    const { size } = props;
-    const { color } = props;
-    const [openModal, setOpenModal] = useState(false);
+export function DeleteButtonComponent(props: ButtonProps) {
+  const { text } = props;
+  const { size } = props;
+  const { color } = props;
+  const [openModal, setOpenModal] = useState(false);
 
-    let colorButton: any = "primary";
+  let colorButton: any = "primary";
 
-    if (size != "door") {
-        colorButton = color;
-    }
-    return (
-        <Flowbite theme={{ theme: customTheme }}>
-            <Button onClick={() => setOpenModal(true)} color={colorButton} ><HiTrash className="mr-2 h-5 w-5" /></Button>
+  if (size != "door") {
+    colorButton = color;
+  }
+  return (
+    <Flowbite theme={{ theme: customTheme }}>
+      <Button onClick={() => setOpenModal(true)} color={colorButton} ><HiTrash className="mr-2 h-5 w-5" /></Button>
       <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
         <Modal.Header />
         <Modal.Body>
@@ -135,25 +167,25 @@ export function DeleteButtonComponent(props: ButtonProps){
           </div>
         </Modal.Body>
       </Modal>
-        </Flowbite>
-    );
+    </Flowbite>
+  );
 }
 
 export function EditButtonComponent(props: ButtonProps) {
-    const { text } = props;
-    const { size } = props;
-    const { color } = props;
-    const [openModal, setOpenModal] = useState(false);
-    const emailInputRef = useRef<HTMLInputElement>(null);
+  const { text } = props;
+  const { size } = props;
+  const { color } = props;
+  const [openModal, setOpenModal] = useState(false);
+  const emailInputRef = useRef<HTMLInputElement>(null);
 
-    let colorButton: any = "primary";
+  let colorButton: any = "primary";
 
-    if (size != "door") {
-        colorButton = color;
-    }
-    return (
-        <Flowbite theme={{ theme: customTheme }}>
-            <Button onClick={() => setOpenModal(true)} color={colorButton} className="mr-2"><HiOutlinePencil className="mr-2 h-5 w-5" /></Button>
+  if (size != "door") {
+    colorButton = color;
+  }
+  return (
+    <Flowbite theme={{ theme: customTheme }}>
+      <Button onClick={() => setOpenModal(true)} color={colorButton} className="mr-2"><HiOutlinePencil className="mr-2 h-5 w-5" /></Button>
       <Modal show={openModal} size="md" popup onClose={() => setOpenModal(false)} initialFocus={emailInputRef}>
         <Modal.Header />
         <Modal.Body>
@@ -163,18 +195,18 @@ export function EditButtonComponent(props: ButtonProps) {
               <div className="mb-2 block">
                 <Label htmlFor="name" value="Name" />
               </div>
-              <TextInput id="name" ref={emailInputRef}  required />
+              <TextInput id="name" ref={emailInputRef} required />
             </div>
             <div>
               <div className="mb-2 block">
                 <Label htmlFor="email" value="email" />
               </div>
-              <TextInput id="email"  required />
+              <TextInput id="email" required />
             </div>
             <div className="mb-2 block">
-                <Label htmlFor="telp" value="telp" />
-              </div>
-              <TextInput id="telp"  required />
+              <Label htmlFor="telp" value="telp" />
+            </div>
+            <TextInput id="telp" required />
             <div>
               <div className="mb-2 block">
                 <Label htmlFor="password" value="password" />
@@ -197,12 +229,12 @@ export function EditButtonComponent(props: ButtonProps) {
                 <option>Dosen</option>
               </Select>
             </div>
-            <div className="flex justify-end"> 
+            <div className="flex justify-end">
               <Button color={colorButton} onClick={() => setOpenModal(false)} >{text}</Button>
             </div>
           </div>
         </Modal.Body>
       </Modal>
-        </Flowbite>
-    );
+    </Flowbite>
+  );
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ButtonComponent from "../components/button";
+import ButtonComponent, { ButtonModalComponent } from "../components/button";
 import CardComponent from "../components/card";
 import SearchComponent from "../components/search";
 import SidebarComponent from "../components/sidebar";
@@ -17,7 +17,7 @@ export default function Doors() {
             <div className="flex flex-row pl-4 justify-between">
               <SearchComponent />
               <div className="mr-4">
-                <ButtonComponent text="+ Add New Door" color="greenFill" />
+                <ButtonModalComponent text="+ Add New Door" color="greenFill" whatFor="Add Door" />
               </div>
             </div>
           </div>
