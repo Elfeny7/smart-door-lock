@@ -1,8 +1,8 @@
-class User {
-    private id: number;
-    private name: string;
-    private status: string;
-    private email: string;
+export class User {
+    public id: number;
+    public name: string;
+    public status: string;
+    public email: string;
 
     constructor(id: number, name: string, status: string, email: string) {
         this.id = id;

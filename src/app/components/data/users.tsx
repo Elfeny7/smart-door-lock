@@ -1,5 +1,7 @@
-class UserList {
-    UserList: User[] = [
+import { User } from "../model/user";
+
+export class UserListArray {
+    UserArray: User[] = [
        new User(101, "ikmal", "mahasiswa", "ikmal@gmail.com"),
        new User(102, "faris", "mahasiswa", "faris@gmail.com"),
        new User(103, "musyaffa", "mahasiswa", "musyaffa@gmail.com"),
