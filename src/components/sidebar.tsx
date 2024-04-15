@@ -2,7 +2,7 @@
 import { Sidebar } from 'flowbite-react';
 
 interface SidebarProps {
-    activePage: string;
+    activePage?: string;
 }
 
 export default function SidebarComponent(props: SidebarProps) {

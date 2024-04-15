@@ -1,8 +1,9 @@
+import { ButtonModalComponent } from "@/components/button";
+import CardComponent from "@/components/card";
+import SearchComponent from "@/components/search";
+import SidebarComponent from "@/components/sidebar";
 import Link from "next/link";
-import ButtonComponent, { ButtonModalComponent } from "../components/button";
-import CardComponent from "../components/card";
-import SearchComponent from "../components/search";
-import SidebarComponent from "../components/sidebar";
+
 
 export default function Doors() {
   return (

@@ -1,6 +1,7 @@
-import ButtonComponent, { ButtonModalComponent } from "@/app/components/button";
-import DoorUserTableComponent from "@/app/components/door-user-table";
-import DropdownComponent from "@/app/components/dropdown";
+import ButtonComponent, { ButtonModalComponent } from "@/components/button";
+import DoorUserTableComponent from "@/components/door-user-table";
+import DropdownComponent from "@/components/dropdown";
+
 
 export default function DoorsDetail() {
     return (

@@ -1,8 +1,4 @@
-import SidebarComponent from "./components/sidebar";
-import ButtonComponent from "./components/button";
-import UserListComponent from "./components/userlist";
-import FormComponent from "./components/form";
-
+import SidebarComponent from "@/components/sidebar";
 
 export default function MyPage() {
   return (

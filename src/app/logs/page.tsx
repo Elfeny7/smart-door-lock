@@ -1,10 +1,7 @@
-import { ButtonModalComponent } from "../components/button";
-import CardComponent from "../components/card";
-import DropdownComponent from "../components/dropdown";
-import LogListComponent from "../components/loglist";
-import SearchComponent from "../components/search";
-import SidebarComponent from "../components/sidebar";
-
+import DropdownComponent from "@/components/dropdown";
+import LogListComponent from "@/components/loglist";
+import SearchComponent from "@/components/search";
+import SidebarComponent from "@/components/sidebar";
 
 export default function Logs() {
     return (

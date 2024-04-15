@@ -1,7 +1,7 @@
-import ButtonComponent, { CreateButtonComponent } from "../components/button";
-import SearchComponent from "../components/search";
-import SidebarComponent from "../components/sidebar";
-import UserListComponent from "../components/userlist";
+import { CreateButtonComponent } from "@/components/button";
+import SidebarComponent from "@/components/sidebar";
+import UserListComponent from "@/components/userlist";
+
 
 export default function UserList() {
   return (
