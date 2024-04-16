@@ -1,11 +1,14 @@
 import { ButtonModalComponent } from "@/components/button";
 import CardComponent from "@/components/card";
+import { DoorListArray } from "@/components/data/doors";
 import SearchComponent from "@/components/search";
 import SidebarComponent from "@/components/sidebar";
 import Link from "next/link";
 
 
 export default function Doors() {
+  const doorList = new DoorListArray();
+
   return (
     <>
       <div className="flex flex-row">
@@ -23,12 +26,10 @@ export default function Doors() {
             </div>
           </div>
           <div className="grid grid-cols-4 gap-4">
-            <CardComponent title="Pintu Neraka" floor="Floor 8" name="LPR 8" doorsId="111"
-              desc="Floor that directly send you to the hellasdsadsadasd asdasdsad" />
-            <CardComponent title="Pintu Surga" floor="Floor 9" name="LPR 7" doorsId="121"
-              desc="Heaven Floor, be afraid of god, do the right thing to doa asdasd asdsadsadsad" />
-            <CardComponent title="Pintu Surga" floor="Floor 9" name="LPR 7" doorsId="131"
-              desc="Heaven Floor, be afraid of god, do the right thing to do" />
+            {doorList.doorArray.map(door => (
+              <CardComponent key={door.id} title={door.doorName} floor={door.floor} name={door.name} doorsId={door.id}
+                desc={door.desc} />
+            ))}
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import ButtonComponent from "./button";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 
 interface CardProps {
-    doorsId?: string;
+    doorsId: number;
     title: string;
     floor: string;
     name: string;
