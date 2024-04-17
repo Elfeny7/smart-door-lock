@@ -47,7 +47,6 @@ export default function DoorsDetail() {
                                 <ButtonModalComponent text="Edit Detail" color="primary" whatFor="Edit Doors Detail"/>
                                 <ButtonModalComponent text="Delete Door" color="redFill" whatFor="Delete"/>
                             </div>
-
                         </div>
                     </div>
                     <div className="flex-1 bg-white rounded-lg min-h-fit px-12 py-12 h-fit">
