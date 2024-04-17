@@ -7,30 +7,33 @@ export default function Dashboard() {
         <div className="h-screen ">
           <SidebarComponent activePage="dashboard" />
         </div>
-        <div className="p-8">
-          <div className="flex flex-col">
+        <div className="p-8 flex-1">
+          <div className="flex flex-col gap-8">
             <h1 className="font-bold text-3xl my-4">Dashboard</h1>
-            <div className="flex flex-row gap-8">
-              <div className="flex-1 bg-white">
-                1
+            <div className="grid grid-cols-4 gap-6">
+              <div className="flex flex-col gap-2 bg-white rounded-md p-6">
+                <div className="">User accessed doors</div>
+                <div className="font-extrabold text-2xl py-2">20</div>
+                <div className="">Today</div>
               </div>
-              <div className="flex-1 bg-blue-500">
-                2
+              <div className="flex flex-col gap-2 bg-white rounded-md p-6">
+                <div className="">Total users</div>
+                <div className="font-extrabold text-2xl py-2">5</div>
+                <div className="">Users</div>
               </div>
-              <div className="flex-1 bg-red-500">
-                3
+              <div className="flex flex-col gap-2 bg-white rounded-md p-6">
+                <div className="">Total doors</div>
+                <div className="font-extrabold text-2xl py-2">2</div>
+                <div className="">Doors</div>
               </div>
-              <div className="flex-1 bg-green-500">
-                4
+              <div className="flex flex-col gap-2 bg-white rounded-md p-6">
+                <div className="">New user</div>
+                <div className="font-extrabold text-2xl py-2">0</div>
+                <div className="">Today</div>
               </div>
             </div>
-            <div className="flex flex-row gap-8">
-              <div className="flex-1 bg-amber-500">
-                1
-              </div>
-              <div className="flex-2 bg-purple-400">
-                2
-              </div>
+            <div className="bg-white rounded-md h-[50vh]">
+              grafik
             </div>
           </div>
         </div>
