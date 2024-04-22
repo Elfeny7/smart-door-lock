@@ -2,8 +2,14 @@ import ButtonComponent, { ButtonModalComponent } from "@/components/button";
 import DoorUserTableComponent from "@/components/door-user-table";
 import DropdownComponent from "@/components/dropdown";
 
+interface ButtonProps {
+    text: string;
+    size?: string;
+    color?: string;
+    link?: string;
+  }
 
-export default function DoorsDetail() {
+export default function DoorsDetail(props: ButtonProps) {
     return (
         <>
             <div className="p-8">

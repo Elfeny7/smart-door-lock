@@ -1,3 +1,5 @@
+"use client";
+import ChartLine from "@/components/charts";
 import SidebarComponent from "@/components/sidebar";
 
 export default function Dashboard() {
@@ -32,8 +34,10 @@ export default function Dashboard() {
                 <div className="">Today</div>
               </div>
             </div>
-            <div className="bg-white rounded-md h-[50vh]">
-              grafik
+            <div className="bg-white rounded-md h-[80vh]">
+              <div className="p-10">
+                <ChartLine />
+              </div>
             </div>
           </div>
         </div>
