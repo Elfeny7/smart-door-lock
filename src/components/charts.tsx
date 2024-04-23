@@ -18,7 +18,7 @@ export default function ChartLine(): JSX.Element {
         ],
         datasets: [
           {
-            label: "Traffic",
+            label: "User",
             data: [0, 0, 0, 1000, 2365, 3000, 0],
           },
         ],
