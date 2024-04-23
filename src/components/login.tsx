@@ -1,9 +1,6 @@
 'use client'
 
 import Head from 'next/head'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 
 export default function Home() {
 
@@ -56,7 +53,7 @@ export default function Home() {
           </div>
         </section>
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </>
   )
 }
