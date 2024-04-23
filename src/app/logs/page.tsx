@@ -7,7 +7,7 @@ export default function Logs() {
     return (
         <>
             <div className="flex flex-row">
-                <div className="h-screen ">
+                <div className="h-screen sticky top-0">
                     <SidebarComponent activePage="logs" />
                 </div>
                 <div className="p-8 max-w-full">

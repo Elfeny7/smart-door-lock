@@ -6,7 +6,7 @@ import UserListComponent from "@/components/userlist";
 export default function UserList() {
   return (
     <div className="flex flex-col lg:flex-row"> {/* Menggunakan flexbox untuk mengatur tata letak */}
-      <div className="h-auto lg:h-screen lg:w-1/4"> {/* Mengatur lebar sidebar untuk layar kecil */}
+      <div className="h-auto lg:h-screen lg:w-1/4 sticky top-0"> {/* Mengatur lebar sidebar untuk layar kecil */}
         <SidebarComponent activePage="users"/>
       </div>
       <div className="p-4 lg:p-4 w-full lg:w-full"> {/* Mengatur padding dan lebar konten */}

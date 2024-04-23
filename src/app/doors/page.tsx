@@ -12,7 +12,7 @@ export default function Doors() {
   return (
     <>
       <div className="flex flex-row">
-        <div className="h-screen">
+        <div className="h-screen sticky top-0">
           <SidebarComponent activePage="doors" />
         </div>
         <div className="p-8">

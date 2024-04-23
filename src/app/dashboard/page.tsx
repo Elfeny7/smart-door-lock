@@ -6,8 +6,8 @@ export default function Dashboard() {
   return (
     <>
       <div className="flex flex-row">
-        <div className="h-screen ">
-          <SidebarComponent activePage="dashboard" />
+        <div className="h-screen sticky top-0">
+          <SidebarComponent activePage="dashboard"/>
         </div>
         <div className="p-8 flex-1">
           <div className="flex flex-col gap-8">
