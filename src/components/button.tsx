@@ -5,19 +5,15 @@ import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { useRef, useState } from "react";
 import { HiTrash, HiOutlinePencil, HiOutlineExclamationCircle } from "react-icons/hi";
 import EditDetailDoorModal, { AddDoorModal, AddUserDoorModal, DialogDecisionModal } from "./modal";
+import Link from "next/link";
 
 interface ButtonProps {
   text: string;
   size?: string;
   color?: string;
   link?: string;
-}
-
-interface ButtonModalProps {
-  text: string;
-  color?: string;
-  link?: string;
   whatFor?: string;
+  data?: any;
 }
 
 const customTheme: CustomFlowbiteTheme = {
@@ -40,7 +36,6 @@ export default function ButtonComponent(props: ButtonProps) {
   const { color } = props;
   const { link } = props;
 
-
   return (
     <Flowbite theme={{ theme: customTheme }}>
       <Button onClick={() => { }} color={color} size={size} href={link}>{text}</Button>
@@ -48,7 +43,26 @@ export default function ButtonComponent(props: ButtonProps) {
   );
 }
 
-export function ButtonModalComponent(props: ButtonModalProps) {
+export function ButtonLinkComponent(props: ButtonProps) {
+  const { text } = props;
+  const { size } = props;
+  const { color } = props;
+  const { link } = props;
+  const { data } = props;
+
+  return (
+    <Flowbite theme={{ theme: customTheme }}>
+      <Link href={{
+        pathname: link,
+        query: {data: data}
+      }}>
+        <Button onClick={() => { }} color={color} size={size}>{text}</Button>
+      </Link>
+    </Flowbite>
+  );
+}
+
+export function ButtonModalComponent(props: ButtonProps) {
   const [openModal, setOpenModal] = useState(false);
   const { text } = props;
   const { color } = props;
@@ -61,10 +75,10 @@ export function ButtonModalComponent(props: ButtonModalProps) {
   return (
     <Flowbite theme={{ theme: customTheme }}>
       <Button onClick={() => { setOpenModal(true) }} color={color}>{text}</Button>
-      {whatFor == "Add Door" ? <AddDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1> }
-      {whatFor == "Edit Doors Detail" ? <EditDetailDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1> }
-      {whatFor == "Add User Detail" ? <AddUserDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1> }
-      {whatFor == "Delete" ? <DialogDecisionModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1> }
+      {whatFor == "Add Door" ? <AddDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1>}
+      {whatFor == "Edit Doors Detail" ? <EditDetailDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1>}
+      {whatFor == "Add User Detail" ? <AddUserDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1>}
+      {whatFor == "Delete" ? <DialogDecisionModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1>}
     </Flowbite>
   );
 

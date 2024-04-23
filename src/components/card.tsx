@@ -1,7 +1,6 @@
 import { Card, CustomFlowbiteTheme, Flowbite } from "flowbite-react";
-import ButtonComponent from "./button";
-import { HiOutlineArrowCircleRight } from "react-icons/hi";
-import { root } from "postcss";
+import ButtonComponent, { ButtonLinkComponent } from "./button";
+import { Door } from "./model/door";
 
 interface CardProps {
     doorsId: number;
@@ -9,6 +8,7 @@ interface CardProps {
     floor: string;
     name: string;
     desc: string;
+    data?: any;
 }
 
 const customTheme: CustomFlowbiteTheme = {
@@ -21,7 +21,7 @@ const customTheme: CustomFlowbiteTheme = {
 };
 
 export default function CardComponent(props: CardProps) {
-    const { title, floor, name, desc, doorsId } = props;
+    const { title, floor, name, desc, doorsId, data } = props;
     var linked = "doors/" + doorsId || "error";
 
     return (
@@ -35,7 +35,7 @@ export default function CardComponent(props: CardProps) {
                     <p className="font-normal text-gray-700 dark:text-gray-400">{desc}</p>
                 </div>
                 <div className="mt-auto mx-auto">
-                    <ButtonComponent text="Detail" size="door" color="primary" link={linked} />
+                    <ButtonLinkComponent text="Detail" size="door" color="primary" link={linked} data={data}/>
                 </div>
             </Card>
         </Flowbite>

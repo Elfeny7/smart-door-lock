@@ -26,9 +26,9 @@ export default function Doors() {
             </div>
           </div>
           <div className="grid grid-cols-4 gap-4">
-            {doorList.doorArray.map(door => (
+            {doorList.doorArray.map((door, index) => (
               <CardComponent key={door.id} title={door.doorName} floor={door.floor} name={door.name} doorsId={door.id}
-                desc={door.desc} />
+                desc={door.desc} data={index}/>
             ))}
           </div>
         </div>
