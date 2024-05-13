@@ -43,6 +43,9 @@ export default function SidebarComponent(props: SidebarProps) {
                     <Sidebar.Item className={logsStyle} href="logs">
                         Log
                     </Sidebar.Item>
+                    <Sidebar.Item className={logsStyle} href="login">
+                        Login
+                    </Sidebar.Item>
                 </Sidebar.ItemGroup>
             </Sidebar.Items>
         </Sidebar>
