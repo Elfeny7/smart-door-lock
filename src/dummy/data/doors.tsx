@@ -8,3 +8,4 @@ export class DoorListArray {
        new Door(114, "Smart Door 4", "Floor 5", "LPR 5", "Theoritical class for Mathematics and Algorithms"),
     ]
 }
+

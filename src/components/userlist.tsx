@@ -3,7 +3,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 import { HiTrash, HiOutlinePencil } from "react-icons/hi";
 import { DeleteButtonComponent, EditButtonComponent } from "./button";
-import { UserListArray } from "./data/users";
+import { UserListArray } from "../dummy/data/users";
 const userList = new UserListArray();
 
 function UserListComponent() {

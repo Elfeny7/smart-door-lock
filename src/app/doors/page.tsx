@@ -1,13 +1,13 @@
 import { ButtonModalComponent } from "@/components/button";
 import CardComponent from "@/components/card";
-import { DoorListArray } from "@/components/data/doors";
+import { DoorListArray } from "@/dummy/data/doors";
 import SearchComponent from "@/components/search";
-import SidebarComponent from "@/components/sidebar";
-import Link from "next/link";
+import SidebarComponent from "@/components/sidebar"; import Link from "next/link";
+import axios from "axios";
+import { fetchDoors } from "@/services/doorService";
 
-
-export default function Doors() {
-  const doorList = new DoorListArray();
+export default async function Doors() {
+  const doors = await fetchDoors();
 
   return (
     <>
@@ -26,9 +26,9 @@ export default function Doors() {
             </div>
           </div>
           <div className="grid grid-cols-4 gap-4">
-            {doorList.doorArray.map((door, index) => (
-              <CardComponent key={door.id} title={door.doorName} floor={door.floor} name={door.name} doorsId={door.id}
-                desc={door.desc} data={index}/>
+            {doors.map((door:any) => (
+              <CardComponent key={door.id} doorsId={door.id} name={door.name} location={door.location} class_name={door.class_name}
+                description={door.description}/>
             ))}
           </div>
         </div>

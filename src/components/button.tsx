@@ -13,7 +13,7 @@ interface ButtonProps {
   color?: string;
   link?: string;
   whatFor?: string;
-  data?: any;
+  doorsId?: any;
 }
 
 const customTheme: CustomFlowbiteTheme = {
@@ -43,21 +43,21 @@ export default function ButtonComponent(props: ButtonProps) {
   );
 }
 
-export function ButtonLinkComponent(props: ButtonProps) {
+export function ButtonCardComponent(props: ButtonProps) {
   const { text } = props;
   const { size } = props;
   const { color } = props;
   const { link } = props;
-  const { data } = props;
 
   return (
     <Flowbite theme={{ theme: customTheme }}>
-      <Link href={{
+      {/* <Link href={{
         pathname: link,
-        query: {data: data}
+        query: {data: doorsId}
       }}>
         <Button onClick={() => { }} color={color} size={size}>{text}</Button>
-      </Link>
+      </Link> */}
+        <Button onClick={() => { }} color={color} size={size} href={link}>{text}</Button>
     </Flowbite>
   );
 }
