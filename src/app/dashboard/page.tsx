@@ -1,6 +1,6 @@
 "use client";
-import ChartLine from "@/components/charts";
-import SidebarComponent from "@/components/sidebar";
+import ChartLine from "@/components/atoms/charts";
+import SidebarComponent from "@/components/organisms/sidebar";
 
 export default function Dashboard() {
   return (

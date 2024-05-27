@@ -1,7 +1,7 @@
-import DropdownComponent from "@/components/dropdown";
-import LogListComponent from "@/components/loglist";
-import SearchComponent from "@/components/search";
-import SidebarComponent from "@/components/sidebar";
+import DropdownComponent from "@/components/molecules/dropdown";
+import LogListComponent from "@/components/templates/loglist";
+import SearchComponent from "@/components/atoms/search";
+import SidebarComponent from "@/components/organisms/sidebar";
 
 export default function Logs() {
     return (

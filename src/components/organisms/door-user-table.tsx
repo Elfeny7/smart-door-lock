@@ -1,6 +1,6 @@
 
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
-import { UserListArray } from "../dummy/data/users";
+import { UserListArray } from "../../dummy/data/users";
 
 export default function DoorUserTableComponent() {
 const userList = new UserListArray();

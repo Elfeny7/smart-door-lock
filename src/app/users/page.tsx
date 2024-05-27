@@ -1,6 +1,6 @@
-import { CreateButtonComponent } from "@/components/button";
-import SidebarComponent from "@/components/sidebar";
-import UserListComponent from "@/components/userlist";
+import { CreateButtonComponent } from "@/components/atoms/button";
+import SidebarComponent from "@/components/organisms/sidebar";
+import UserListComponent from "@/components/templates/userlist";
 
 
 export default function UserList() {

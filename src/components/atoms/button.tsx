@@ -1,11 +1,10 @@
-'use client';
+"use client";
 import type { CustomFlowbiteTheme } from "flowbite-react";
-import { Checkbox, Flowbite } from "flowbite-react";
+import { Flowbite } from "flowbite-react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { HiTrash, HiOutlinePencil, HiOutlineExclamationCircle } from "react-icons/hi";
-import EditDetailDoorModal, { AddDoorModal, AddUserDoorModal, DialogDecisionModal } from "./modal";
-import Link from "next/link";
+import { deleteDoor } from "@/services/doorService";
 
 interface ButtonProps {
   text: string;
@@ -13,7 +12,8 @@ interface ButtonProps {
   color?: string;
   link?: string;
   whatFor?: string;
-  doorsId?: any;
+  door?: any;
+  onClick?: any;
 }
 
 const customTheme: CustomFlowbiteTheme = {
@@ -31,10 +31,7 @@ const customTheme: CustomFlowbiteTheme = {
 };
 
 export default function ButtonComponent(props: ButtonProps) {
-  const { text } = props;
-  const { size } = props;
-  const { color } = props;
-  const { link } = props;
+  const { text, size, color, link } = props;
 
   return (
     <Flowbite theme={{ theme: customTheme }}>
@@ -44,44 +41,43 @@ export default function ButtonComponent(props: ButtonProps) {
 }
 
 export function ButtonCardComponent(props: ButtonProps) {
-  const { text } = props;
-  const { size } = props;
-  const { color } = props;
-  const { link } = props;
+  const { text, size, color, link } = props;
 
   return (
     <Flowbite theme={{ theme: customTheme }}>
-      {/* <Link href={{
-        pathname: link,
-        query: {data: doorsId}
-      }}>
-        <Button onClick={() => { }} color={color} size={size}>{text}</Button>
-      </Link> */}
-        <Button onClick={() => { }} color={color} size={size} href={link}>{text}</Button>
+      <Button onClick={() => { }} color={color} size={size} href={link}>{text}</Button>
     </Flowbite>
   );
 }
 
 export function ButtonModalComponent(props: ButtonProps) {
-  const [openModal, setOpenModal] = useState(false);
-  const { text } = props;
-  const { color } = props;
-  const { whatFor } = props;
-
-  function onCloseModal() {
-    setOpenModal(false);
-  }
+  const { text, color, onClick } = props;
 
   return (
     <Flowbite theme={{ theme: customTheme }}>
-      <Button onClick={() => { setOpenModal(true) }} color={color}>{text}</Button>
-      {whatFor == "Add Door" ? <AddDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1>}
-      {whatFor == "Edit Doors Detail" ? <EditDetailDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1>}
-      {whatFor == "Add User Detail" ? <AddUserDoorModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1>}
-      {whatFor == "Delete" ? <DialogDecisionModal openModal={openModal} onCloseModal={onCloseModal} /> : <h1></h1>}
+      <Button onClick={onClick} color={color}>{text}</Button>
     </Flowbite>
   );
+}
 
+export function ButtonFormComponent(props: ButtonProps) {
+  const { text, color, link, onClick } = props;
+
+  return (
+    <Flowbite theme={{ theme: customTheme }}>
+      <Button onClick={onClick} color={color} href={link} type="submit">{text}</Button>
+    </Flowbite>
+  );
+}
+
+export function ButtonDeleteComponent(props: ButtonProps) {
+  const { text, size, color, link, door } = props;
+
+  return (
+    <Flowbite theme={{ theme: customTheme }}>
+      <Button onClick={() => deleteDoor(door.id!)} color={color} size={size} href={link}>{text}</Button>
+    </Flowbite>
+  );
 }
 
 export function CreateButtonComponent(props: ButtonProps) {
@@ -89,7 +85,6 @@ export function CreateButtonComponent(props: ButtonProps) {
   const { size } = props;
   const { color } = props;
   const [openModal, setOpenModal] = useState(false);
-  const emailInputRef = useRef<HTMLInputElement>(null);
 
   let colorButton: any = "primary";
 
@@ -99,7 +94,7 @@ export function CreateButtonComponent(props: ButtonProps) {
   return (
     <Flowbite theme={{ theme: customTheme }}>
       <Button onClick={() => setOpenModal(true)} color={colorButton} size={size}>{text}</Button>
-      <Modal show={openModal} size="md" popup onClose={() => setOpenModal(false)} initialFocus={emailInputRef}>
+      <Modal show={openModal} size="md" popup onClose={() => setOpenModal(false)}>
         <Modal.Header />
         <Modal.Body>
           <div className="space-y-6">
@@ -108,7 +103,7 @@ export function CreateButtonComponent(props: ButtonProps) {
               <div className="mb-2 block">
                 <Label htmlFor="name" value="Name" />
               </div>
-              <TextInput id="name" ref={emailInputRef} placeholder="Aritonang" required />
+              <TextInput id="name" placeholder="Aritonang" required />
             </div>
             <div>
               <div className="mb-2 block">
@@ -190,7 +185,6 @@ export function EditButtonComponent(props: ButtonProps) {
   const { size } = props;
   const { color } = props;
   const [openModal, setOpenModal] = useState(false);
-  const emailInputRef = useRef<HTMLInputElement>(null);
 
   let colorButton: any = "primary";
 
@@ -200,7 +194,7 @@ export function EditButtonComponent(props: ButtonProps) {
   return (
     <Flowbite theme={{ theme: customTheme }}>
       <Button onClick={() => setOpenModal(true)} color={colorButton} className="mr-2"><HiOutlinePencil className="mr-2 h-5 w-5" /></Button>
-      <Modal show={openModal} size="md" popup onClose={() => setOpenModal(false)} initialFocus={emailInputRef}>
+      <Modal show={openModal} size="md" popup onClose={() => setOpenModal(false)}>
         <Modal.Header />
         <Modal.Body>
           <div className="space-y-6">
@@ -209,7 +203,7 @@ export function EditButtonComponent(props: ButtonProps) {
               <div className="mb-2 block">
                 <Label htmlFor="name" value="Name" />
               </div>
-              <TextInput id="name" ref={emailInputRef} required />
+              <TextInput id="name" required />
             </div>
             <div>
               <div className="mb-2 block">

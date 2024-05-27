@@ -3,7 +3,7 @@
 
 import { Checkbox, Table, Select, Button } from "flowbite-react";
 import { HiTrash,HiOutlinePencil } from "react-icons/hi";
-import { DeleteButtonComponent, EditButtonComponent } from "./button";
+import { DeleteButtonComponent, EditButtonComponent } from "../atoms/button";
 
 
 function LogListComponent() {

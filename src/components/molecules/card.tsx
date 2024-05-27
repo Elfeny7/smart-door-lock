@@ -1,6 +1,6 @@
 import { Card, CustomFlowbiteTheme, Flowbite } from "flowbite-react";
-import ButtonComponent, { ButtonCardComponent } from "./button";
-import { Door } from "../dummy/model/door";
+import ButtonComponent, { ButtonCardComponent } from "../atoms/button";
+import { Door } from "../../dummy/model/door";
 
 interface CardProps {
     doorsId: number;
@@ -34,7 +34,7 @@ export default function CardComponent(props: CardProps) {
                     <p className="font-normal text-gray-700 dark:text-gray-400">{description}</p>
                 </div>
                 <div className="mt-auto mx-auto">
-                    <ButtonCardComponent text="Detail" size="door" color="primary" link={linked} doorsId={doorsId}/>
+                    <ButtonCardComponent text="Detail" size="door" color="primary" link={linked}/>
                 </div>
             </Card>
         </Flowbite>
