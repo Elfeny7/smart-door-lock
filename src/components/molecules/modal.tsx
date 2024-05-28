@@ -20,7 +20,7 @@ type Door = {
 };
 
 export function AddDoorModal(props: DoorModalProps) {
-    const { showModal, setShowModal } = props;
+    const { showModal, setShowModal, onClose } = props;
 
     const [name, setName] = useState('');
     const [location, setLocation] = useState('');
@@ -55,7 +55,7 @@ export function AddDoorModal(props: DoorModalProps) {
                 setValidation({ message: "An unexpected error occurred" });
             }
         }
-        setShowModal(false);
+        onClose();
     };
 
     return (

@@ -8,14 +8,22 @@ import { AddDoorModal } from "../molecules/modal";
 
 type Props = {
   doors: any;
+  refreshDoors: () => void;
 }
 
-export default function DoorsTemplate({ doors }: Props) {
+export default function DoorsTemplate({ doors, refreshDoors }: Props) {
 
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(true);
   };
+  const closeModal = () => {
+    setShowModal(false);
+    refreshDoors();
+  }
+  if (!doors) {
+    return <div>Loading...</div>;
+}
 
   return (
     <>
@@ -30,7 +38,7 @@ export default function DoorsTemplate({ doors }: Props) {
               <SearchComponent />
               <div className="mr-4">
                 <ButtonModalComponent onClick={openModal} text="+ Add New Door" color="greenFill" />
-                <AddDoorModal showModal={showModal} setShowModal={setShowModal} />
+                <AddDoorModal showModal={showModal} setShowModal={setShowModal} onClose={closeModal}/>
               </div>
             </div>
           </div>
