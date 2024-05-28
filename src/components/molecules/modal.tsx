@@ -3,12 +3,12 @@ import { Label, Modal, TextInput, Textarea } from "flowbite-react";
 import { useState } from "react";
 import { ButtonFormComponent } from "../atoms/button";
 import axios from "axios";
-import Router from 'next/router';
 
 type DoorModalProps = {
     door?: Door;
     showModal?: any;
     setShowModal?: any;
+    onClose: () => void;
 }
 
 type Door = {
@@ -43,7 +43,6 @@ export function AddDoorModal(props: DoorModalProps) {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/doors`, formData);
 
             if (response.status === 200 || response.status === 201) {
-                Router.push('/');
 
             } else {
                 setValidation({ message: "Failed to store the door data" });
@@ -103,7 +102,7 @@ export function AddDoorModal(props: DoorModalProps) {
 }
 
 export default function EditDetailDoorModal(props: DoorModalProps) {
-    const { door, showModal, setShowModal } = props;
+    const { door, showModal, setShowModal, onClose } = props;
 
     const [name, setName] = useState(door!.name);
     const [location, setLocation] = useState(door!.location);
@@ -128,7 +127,6 @@ export default function EditDetailDoorModal(props: DoorModalProps) {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/doors/${door!.id}`, formData);
 
             if (response.status === 200 || response.status === 201) {
-                Router.push('/');
             } else {
                 setValidation({ message: "Failed to store the door data" });
             }
@@ -140,8 +138,7 @@ export default function EditDetailDoorModal(props: DoorModalProps) {
                 setValidation({ message: "An unexpected error occurred" });
             }
         }
-
-        setShowModal(false);
+        onClose();
     };
 
     return (
