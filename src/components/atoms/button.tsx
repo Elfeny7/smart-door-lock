@@ -70,15 +70,15 @@ export function ButtonFormComponent(props: ButtonProps) {
   );
 }
 
-export function ButtonDeleteComponent(props: ButtonProps) {
-  const { text, size, color, link, door } = props;
+// export function ButtonDeleteComponent(props: ButtonProps) {
+//   const { text, size, color, link, door } = props;
 
-  return (
-    <Flowbite theme={{ theme: customTheme }}>
-      <Button onClick={() => deleteDoor(door.id!)} color={color} size={size} href={link}>{text}</Button>
-    </Flowbite>
-  );
-}
+//   return (
+//     <Flowbite theme={{ theme: customTheme }}>
+//       <Button onClick={() => deleteDoor(door.id!)} color={color} size={size} href={link}>{text}</Button>
+//     </Flowbite>
+//   );
+// }
 
 export function CreateButtonComponent(props: ButtonProps) {
   const { text } = props;

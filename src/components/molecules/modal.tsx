@@ -1,13 +1,17 @@
 "use client";
-import { Label, Modal, TextInput, Textarea } from "flowbite-react";
+import { Button, Label, Modal, TextInput, Textarea } from "flowbite-react";
 import { useState } from "react";
 import { ButtonFormComponent } from "../atoms/button";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 import axios from "axios";
+import { deleteDoor } from "@/services/doorService";
 
 type DoorModalProps = {
-    door?: Door;
+    door: Door;
     showModal?: any;
     setShowModal?: any;
+    showModalDelete?: any;
+    setShowModalDelete?: any;
     onClose: () => void;
 }
 
@@ -236,30 +240,34 @@ export default function EditDetailDoorModal(props: DoorModalProps) {
 //     );
 // }
 
-// export function DialogDecisionModal(props: DoorModalProps) {
-//     const { showModal, setShowModal } = props;
+export function DeleteModal(props: DoorModalProps) {
+    const { door, showModalDelete, setShowModalDelete, onClose } = props;
+    const handleDeleteAndClose = () => {
+        deleteDoor(door!.id);
+        onClose();
+    };
 
-//     return (
-//         <>
-//             <Modal show={openModal} size="md" onClose={onCloseModal} popup>
-//                 <Modal.Header />
-//                 <Modal.Body>
-//                     <div className="text-center">
-//                         <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-//                         <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-//                             Are you sure you want to delete this door?
-//                         </h3>
-//                         <div className="flex justify-center gap-4">
-//                             <Button color="failure" onClick={onCloseModal}>
-//                                 {"Yes, I'm sure"}
-//                             </Button>
-//                             <Button color="gray" onClick={onCloseModal}>
-//                                 No, cancel
-//                             </Button>
-//                         </div>
-//                     </div>
-//                 </Modal.Body>
-//             </Modal>
-//         </>
-//     );
-// }
+    return (
+        <>
+            <Modal show={showModalDelete} size="md" onClose={() => setShowModalDelete(false) } popup>
+                <Modal.Header />
+                <Modal.Body>
+                    <div className="text-center">
+                        <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                        <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                            Are you sure you want to delete?
+                        </h3>
+                        <div className="flex justify-center gap-4">
+                            <Button color="failure" onClick={handleDeleteAndClose} href="../doors">
+                                {"Yes, I'm sure"}
+                            </Button>
+                            <Button color="gray" onClick={() => setShowModalDelete(false)}>
+                                No, cancel
+                            </Button>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
+        </>
+    );
+}

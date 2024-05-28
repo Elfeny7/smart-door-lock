@@ -1,8 +1,8 @@
 "use client";
-import ButtonComponent, { ButtonDeleteComponent, ButtonModalComponent } from "@/components/atoms/button";
+import ButtonComponent, { ButtonModalComponent } from "@/components/atoms/button";
 import DoorUserTableComponent from "@/components/organisms/door-user-table";
 import DropdownComponent from "@/components/molecules/dropdown";
-import EditDetailDoorModal from "@/components/molecules/modal";
+import EditDetailDoorModal, { DeleteModal } from "@/components/molecules/modal";
 import { useState } from "react";
 
 
@@ -22,6 +22,7 @@ type Props = {
 export default function DoorDetailTemplate({ door, refreshDoorDetails }: Props) {
 
     const [showModal, setShowModal] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false);
 
     const openModal = () => {
         setShowModal(true);
@@ -30,6 +31,14 @@ export default function DoorDetailTemplate({ door, refreshDoorDetails }: Props) 
         setShowModal(false);
         refreshDoorDetails();
     };
+
+    const openModalDelete = () => {
+        setShowModalDelete(true);
+    };
+    const closeModalDelete = () => {
+        setShowModalDelete(false);
+    };
+
     if (!door) {
         return <div>Loading...</div>;
     }
@@ -76,7 +85,8 @@ export default function DoorDetailTemplate({ door, refreshDoorDetails }: Props) 
                             <div className="flex flex-row my-auto gap-1 mx-auto mt-4">
                                 <ButtonModalComponent onClick={openModal} text="Edit Door" color="primary" door={(door!)} />
                                 <EditDetailDoorModal showModal={showModal} setShowModal={setShowModal} door={door!} onClose={closeModal} />
-                                <ButtonDeleteComponent text="Delete Door" color="redFill" door={door!} link="../doors" />
+                                <ButtonModalComponent onClick={openModalDelete} text="Delete Door" color="redFill" door={door!} />
+                                <DeleteModal showModalDelete={showModalDelete} setShowModalDelete={setShowModalDelete} door={door!} onClose={closeModalDelete} />
                             </div>
                         </div>
                     </div>
