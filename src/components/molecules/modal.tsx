@@ -7,7 +7,7 @@ import axios from "axios";
 import { deleteDoor } from "@/services/doorService";
 
 type DoorModalProps = {
-    door: Door;
+    door?: Door;
     showModal?: any;
     setShowModal?: any;
     showModalDelete?: any;
@@ -196,51 +196,7 @@ export default function EditDetailDoorModal(props: DoorModalProps) {
     );
 }
 
-// export function AddUserDoorModal(props: DoorModalProps) {
-//     const { showModal, setShowModal } = props;
-
-//     return (
-//         <Modal show={openModal} size="md" onClose={onCloseModal} popup>
-//             <Modal.Header />
-//             <Modal.Body>
-//                 <div className="space-y-3">
-//                     <h3 className="text-xl font-bold text-gray-900 dark:text-white">Add User to This Door</h3>
-//                     <div>
-//                         <div className="mb-2 block">
-//                             <Label value="Door" />
-//                         </div>
-//                         <TextInput id="iduser" />
-//                     </div>
-//                     <div>
-//                         <div className="mb-2 block">
-//                             <Label value="Name" />
-//                         </div>
-//                         <TextInput id="name" />
-//                     </div>
-//                     <div>
-//                         <div className="mb-2 block">
-//                             <Label value="Status" />
-//                         </div>
-//                         <TextInput id="status" />
-//                     </div>
-//                     <div>
-//                         <div className="mb-2 block">
-//                             <Label value="Email" />
-//                         </div>
-//                         <TextInput id="email" />
-//                     </div>
-//                     <div className="w-full">
-//                         <div className="mt-6">
-//                             <ButtonComponent text="Add User" color="greenFill" />
-//                         </div>
-//                     </div>
-//                 </div>
-//             </Modal.Body>
-//         </Modal>
-//     );
-// }
-
-export function DeleteModal(props: DoorModalProps) {
+export function DeleteDoorModal(props: DoorModalProps) {
     const { door, showModalDelete, setShowModalDelete, onClose } = props;
     const handleDeleteAndClose = () => {
         deleteDoor(door!.id);

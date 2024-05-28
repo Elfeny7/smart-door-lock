@@ -2,7 +2,7 @@
 import ButtonComponent, { ButtonModalComponent } from "@/components/atoms/button";
 import DoorUserTableComponent from "@/components/organisms/door-user-table";
 import DropdownComponent from "@/components/molecules/dropdown";
-import EditDetailDoorModal, { DeleteModal } from "@/components/molecules/modal";
+import EditDetailDoorModal, { DeleteDoorModal } from "@/components/molecules/modal";
 import { useState } from "react";
 
 
@@ -86,7 +86,7 @@ export default function DoorDetailTemplate({ door, refreshDoorDetails }: Props) 
                                 <ButtonModalComponent onClick={openModal} text="Edit Door" color="primary" door={(door!)} />
                                 <EditDetailDoorModal showModal={showModal} setShowModal={setShowModal} door={door!} onClose={closeModal} />
                                 <ButtonModalComponent onClick={openModalDelete} text="Delete Door" color="redFill" door={door!} />
-                                <DeleteModal showModalDelete={showModalDelete} setShowModalDelete={setShowModalDelete} door={door!} onClose={closeModalDelete} />
+                                <DeleteDoorModal showModalDelete={showModalDelete} setShowModalDelete={setShowModalDelete} door={door!} onClose={closeModalDelete} />
                             </div>
                         </div>
                     </div>

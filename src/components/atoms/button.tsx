@@ -4,7 +4,6 @@ import { Flowbite } from "flowbite-react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { HiTrash, HiOutlinePencil, HiOutlineExclamationCircle } from "react-icons/hi";
-import { deleteDoor } from "@/services/doorService";
 
 interface ButtonProps {
   text: string;
@@ -69,16 +68,6 @@ export function ButtonFormComponent(props: ButtonProps) {
     </Flowbite>
   );
 }
-
-// export function ButtonDeleteComponent(props: ButtonProps) {
-//   const { text, size, color, link, door } = props;
-
-//   return (
-//     <Flowbite theme={{ theme: customTheme }}>
-//       <Button onClick={() => deleteDoor(door.id!)} color={color} size={size} href={link}>{text}</Button>
-//     </Flowbite>
-//   );
-// }
 
 export function CreateButtonComponent(props: ButtonProps) {
   const { text } = props;
