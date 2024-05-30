@@ -4,6 +4,7 @@ import DoorUserTableComponent from "@/components/organisms/door-user-table";
 import DropdownComponent from "@/components/molecules/dropdown";
 import EditDetailDoorModal, { DeleteDoorModal } from "@/components/molecules/modal";
 import { useState } from "react";
+import { deleteDoor } from "@/services/doorService";
 
 
 type Door = {
@@ -85,7 +86,7 @@ export default function DoorDetailTemplate({ door, refreshDoorDetails }: Props) 
                             <div className="flex flex-row my-auto gap-1 mx-auto mt-4">
                                 <ButtonModalComponent onClick={openModal} text="Edit Door" color="primary" door={(door!)} />
                                 <EditDetailDoorModal showModal={showModal} setShowModal={setShowModal} door={door!} onClose={closeModal} />
-                                <ButtonModalComponent onClick={openModalDelete} text="Delete Door" color="redFill" door={door!} />
+                                <ButtonModalComponent onClick={openModalDelete} text="Delete Door" color="redFill" door={door!}/>
                                 <DeleteDoorModal showModalDelete={showModalDelete} setShowModalDelete={setShowModalDelete} door={door!} onClose={closeModalDelete} />
                             </div>
                         </div>
