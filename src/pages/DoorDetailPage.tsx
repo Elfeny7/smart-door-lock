@@ -2,13 +2,15 @@
 import { fetchDoorById } from "@/services/doorService";
 import DoorDetailTemplate from "../components/templates/DoorDetailTemplate";
 import { useCallback, useEffect, useState } from "react";
+import { fetchUsersByDoorId } from "@/services/userDoorService";
 
 type Props = {
     doorId: any
 }
 
 const DoorDetailPage = ({ doorId }: Props) => {
-    const [door, setDoor] =  useState(null);
+    const [door, setDoor] = useState(null);
+    const [userDoor, setUserDoor] = useState(null);
 
     const getDoorDetails = useCallback(async () => {
         try {
@@ -19,12 +21,22 @@ const DoorDetailPage = ({ doorId }: Props) => {
         }
     }, [doorId]);
 
+    const getUserByDoor = useCallback(async () => {
+        try {
+            const userByDoorData = await fetchUsersByDoorId(doorId);
+            setUserDoor(userByDoorData);
+        } catch (error) {
+            console.error("Error fetching door details:", error);
+        }
+    }, [doorId]);
+
     useEffect(() => {
         getDoorDetails();
-    }, [getDoorDetails]);
+        getUserByDoor();
+    }, [getDoorDetails, getUserByDoor]);
 
     return (
-        <DoorDetailTemplate door={door} refreshDoorDetails={getDoorDetails} />
+        <DoorDetailTemplate door={door} refreshDoorDetails={getDoorDetails} userDoor={userDoor} />
     );
 };
 
