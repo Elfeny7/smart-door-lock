@@ -40,7 +40,7 @@ const DoorDetailPage = ({ doorId }: Props) => {
     }, [getDoorDetails, getUserByDoor]);
 
     return (
-        <DoorDetailTemplate door={door} users = {users} refreshDoorDetails={getDoorDetails} refreshUserDoor={getUserByDoor} userDoor={userDoor} />
+        <DoorDetailTemplate door={door} users={users} refreshDoorDetails={getDoorDetails} refreshUserDoor={getUserByDoor} userDoor={userDoor} />
     );
 };
 

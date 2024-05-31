@@ -114,7 +114,7 @@ export default function DoorDetailTemplate({ door, users, userDoor, refreshDoorD
             </div>
             <EditDetailDoorModal showModal={showModal} setShowModal={setShowModal} door={door!} onClose={closeModal} />
             <DeleteDoorModal showModalDelete={showModalDelete} setShowModalDelete={setShowModalDelete} door={door!} onClose={closeModalDelete} />
-            <AddUserDoorModal showModalAdd={showModalAdd} setShowModalAdd={setShowModalAdd} users={users!} door={door!} onClose={closeModalAdd} />
+            <AddUserDoorModal showModalAdd={showModalAdd} setShowModalAdd={setShowModalAdd} users={users!} door={door!} userDoor={userDoor} onClose={closeModalAdd} />
         </>
     );
 }

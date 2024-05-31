@@ -1,6 +1,5 @@
 
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
-import { UserListArray } from "../../dummy/data/users";
 
 type Props = {
   userDoor: any;

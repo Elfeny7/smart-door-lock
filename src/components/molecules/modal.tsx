@@ -506,7 +506,7 @@ export function DeleteUserModal(props: UserModalProps) {
 }
 
 export function AddUserDoorModal(props: UserDoorModalProps) {
-    const { users, door, showModalAdd, setShowModalAdd, onClose } = props;
+    const { users, door, userDoor, showModalAdd, setShowModalAdd, onClose } = props;
 
     const [validation, setValidation] = useState({});
 
@@ -515,7 +515,7 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
 
         const formData = new FormData();
 
-        formData.append('user_id', '45');
+        formData.append('user_id', '64');
         formData.append('door_id', door!.id);
 
         try {
@@ -564,6 +564,8 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
         onClose();
     };
 
+    const availableUsers = users.filter((user: any) => !userDoor.some((userDoorItem: any) => userDoorItem.id === user.id));
+
     return (
         <Modal show={showModalAdd} size="3xl" onClose={() => setShowModalAdd(false)} popup>
             <Modal.Header />
@@ -581,7 +583,7 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
                                     <TableHeadCell>Phone</TableHeadCell>
                                 </TableHead>
                                 <TableBody className="divide-y">
-                                    {users.map((user: any) => (
+                                    {availableUsers.map((user: any) => (
                                         <TableRow key={user.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                                             <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                                 {user.id}
@@ -604,115 +606,3 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
         </Modal>
     );
 }
-
-// export function AddUserDoorModal(props: UserDoorModalProps) {
-//     const { users, door, showModalAdd, setShowModalAdd, onClose } = props;
-
-//     const [validation, setValidation] = useState({});
-//     const [userDoor, setUserDoor] = useState([]);
-//     const [selectedUsers, setSelectedUsers] = useState(new Set());
-
-//     useEffect(() => {
-//         // Fetch userDoor data
-//         const fetchUserDoor = async () => {
-//             try {
-//                 const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/user-door/${door!.id}/users`);
-//                 setUserDoor(response.data);
-
-//                 // Initialize selectedUsers with IDs from userDoor
-//                 const initialSelectedUsers = new Set(response.data.map((ud:any) => ud.userId));
-//                 setSelectedUsers(initialSelectedUsers);
-//             } catch (error) {
-//                 console.error("Error fetching userDoor data:", error);
-//             }
-//         };
-
-//         if (door && door.id) {
-//             fetchUserDoor();
-//         }
-//     }, [door]);
-
-//     const handleCheckboxChange = (userId:any) => {
-//         setSelectedUsers(prevSelectedUsers => {
-//             const newSelectedUsers = new Set(prevSelectedUsers);
-//             if (newSelectedUsers.has(userId)) {
-//                 newSelectedUsers.delete(userId);
-//             } else {
-//                 newSelectedUsers.add(userId);
-//             }
-//             return newSelectedUsers;
-//         });
-//     };
-
-//     const attachUserToDoor = async (e:any) => {
-//         e.preventDefault();
-
-//         try {
-//             const formData = {
-//                 userIds: Array.from(selectedUsers),
-//                 doorId: door.id,
-//             };
-
-//             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/user-door`, formData);
-
-//             if (response.status === 200 || response.status === 201) {
-//                 // Handle successful attachment
-//             } else {
-//                 setValidation({ message: "Failed to attach the user door data" });
-//             }
-//         } catch (error: any) {
-//             if (error.response && error.response.data) {
-//                 setValidation(error.response.data);
-//             } else {
-//                 setValidation({ message: "An unexpected error occurred" });
-//             }
-//         }
-//         onClose();
-//     };
-
-//     return (
-//         <Modal show={showModalAdd} size="3xl" onClose={() => setShowModalAdd(false)} popup>
-//             <Modal.Header />
-//             <Modal.Body>
-//                 <div className="space-y-3">
-//                     <h3 className="text-xl font-bold text-gray-900 dark:text-white">Add User to This Door</h3>
-//                     <form onSubmit={attachUserToDoor}>
-//                         <div className="overflow-x-auto">
-//                             <Table hoverable>
-//                                 <TableHead>
-//                                     <TableHeadCell></TableHeadCell>
-//                                     <TableHeadCell>User Name</TableHeadCell>
-//                                     <TableHeadCell>Role</TableHeadCell>
-//                                     <TableHeadCell>Email</TableHeadCell>
-//                                     <TableHeadCell>Phone</TableHeadCell>
-//                                 </TableHead>
-//                                 <TableBody className="divide-y">
-//                                     {users.map((user: any) => (
-//                                         <TableRow key={user.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-//                                             <TableCell>
-//                                                 <input
-//                                                     type="checkbox"
-//                                                     checked={selectedUsers.has(user.id)}
-//                                                     onChange={() => handleCheckboxChange(user.id)}
-//                                                 />
-//                                             </TableCell>
-//                                             <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-//                                                 {user.name}
-//                                             </TableCell>
-//                                             <TableCell>{user.role}</TableCell>
-//                                             <TableCell>{user.email}</TableCell>
-//                                             <TableCell>{user.phone}</TableCell>
-//                                         </TableRow>
-//                                     ))}
-//                                 </TableBody>
-//                             </Table>
-//                         </div>
-//                         <div className="mt-2">
-//                             <ButtonFormComponent color="greenFill" text="Add User" />
-//                         </div>
-//                     </form>
-//                 </div>
-//             </Modal.Body>
-//         </Modal>
-//     );
-// }
