@@ -20,7 +20,7 @@ const UsersPage = () => {
     }, [getUsers]);
 
     return (
-        <UsersTemplate users={users} refreshUsers={getUsers}/>
+        <UsersTemplate users={users!} refreshUsers={getUsers}/>
     );
 }
 

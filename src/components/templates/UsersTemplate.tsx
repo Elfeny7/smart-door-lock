@@ -7,8 +7,19 @@ import { AddUserModal } from "../molecules/modal";
 import UserTable from "../organisms/UserTable";
 
 type Props = {
-    users: any;
+    users: Users;
     refreshUsers: () => void;
+}
+
+type Users= {
+    id: number;
+    name: string;
+    role: string;
+    pin: number;
+    email: string;
+    phone: string;
+
+    
 }
 
 export default function UsersTemplate({ users, refreshUsers }: Props) {

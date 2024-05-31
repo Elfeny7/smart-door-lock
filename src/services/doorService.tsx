@@ -3,7 +3,7 @@ import axios from "axios";
 export const fetchDoors = async () => {
   try {
     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/doors`);
-    return response.data.data.data;
+    return response.data.data;
   } catch (error) {
     console.error('Error fetching door:', error);
   }

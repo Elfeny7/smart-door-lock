@@ -1,16 +1,13 @@
 "use client";
 import type { CustomFlowbiteTheme } from "flowbite-react";
 import { Flowbite } from "flowbite-react";
-import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
-import { useState } from "react";
-import { HiTrash, HiOutlinePencil, HiOutlineExclamationCircle } from "react-icons/hi";
+import { Button} from "flowbite-react";
 
 interface ButtonProps {
   text: string;
   size?: string;
   color?: string;
   link?: string;
-  whatFor?: string;
   door?: any;
   user?: any;
   onClick?: any;
