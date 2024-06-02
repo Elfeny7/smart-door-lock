@@ -1,7 +1,7 @@
 "use client";
 import ButtonComponent, { ButtonModalComponent } from "@/components/atoms/button";
 import DropdownComponent from "@/components/molecules/dropdown";
-import EditDetailDoorModal, { AddUserDoorModal, DeleteDoorModal } from "@/components/molecules/modal";
+import EditDetailDoorModal, { AddUserDoorModal, DeleteDoorModal, DeleteUserDoorModal } from "@/components/molecules/modal";
 import { useState } from "react";
 import UserDoorTableComponent from "../organisms/UserDoorTable";
 
@@ -27,6 +27,7 @@ export default function DoorDetailTemplate({ door, users, userDoor, refreshDoorD
     const [showModal, setShowModal] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [showModalAdd, setShowModalAdd] = useState(false);
+    const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
 
     const openModal = () => {
         setShowModal(true);
@@ -48,6 +49,14 @@ export default function DoorDetailTemplate({ door, users, userDoor, refreshDoorD
     };
     const closeModalAdd = () => {
         setShowModalAdd(false);
+        refreshUserDoor();
+    };
+    
+    const openModalDeleteUser = () => {
+        setShowModalDeleteUser(true);
+    };
+    const closeModalDeleteUser = () => {
+        setShowModalDeleteUser(false);
         refreshUserDoor();
     };
 
@@ -95,7 +104,7 @@ export default function DoorDetailTemplate({ door, users, userDoor, refreshDoorD
                             </div>
                             <hr />
                             <div className="flex flex-row my-auto gap-1 mx-auto mt-4">
-                                <ButtonModalComponent onClick={openModal} text="Edit Door" color="primary" door={(door!)} />
+                                <ButtonModalComponent onClick={openModal} text="Edit Door" color="primary" door={door!} />
                                 <ButtonModalComponent onClick={openModalDelete} text="Delete Door" color="redFill" door={door!} />
                             </div>
                         </div>
@@ -103,8 +112,9 @@ export default function DoorDetailTemplate({ door, users, userDoor, refreshDoorD
                     <div className="flex-1 bg-white rounded-lg min-h-fit px-12 py-12 h-fit">
                         <div className="flex flex-col gap-6">
                             <h1 className="font-bold text-2xl">Users</h1>
-                            <div className="flex flex-row gap-1">
-                                <ButtonModalComponent onClick={openModalAdd} text="Add User to This Door" color="greenFill" />
+                            <div className="flex flex-row gap-2">
+                                <ButtonModalComponent onClick={openModalAdd} text="Add User to Door" color="greenFill" />
+                                <ButtonModalComponent onClick={openModalDeleteUser} text="Delete User from Door" color="redFill" />
                                 <DropdownComponent title="Filter" items={["Only Mahasiswa", "Only Dosen"]} />
                             </div>
                             <UserDoorTableComponent userDoor={userDoor} />
@@ -115,6 +125,7 @@ export default function DoorDetailTemplate({ door, users, userDoor, refreshDoorD
             <EditDetailDoorModal showModal={showModal} setShowModal={setShowModal} door={door!} onClose={closeModal} />
             <DeleteDoorModal showModalDelete={showModalDelete} setShowModalDelete={setShowModalDelete} door={door!} onClose={closeModalDelete} />
             <AddUserDoorModal showModalAdd={showModalAdd} setShowModalAdd={setShowModalAdd} users={users!} door={door!} userDoor={userDoor} onClose={closeModalAdd} />
+            <DeleteUserDoorModal showModalDeleteUser={showModalDeleteUser} setShowModalDeleteUser={setShowModalDeleteUser} users={users!} door={door!} userDoor={userDoor} onClose={closeModalDeleteUser} />
         </>
     );
 }

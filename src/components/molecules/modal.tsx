@@ -51,6 +51,8 @@ type UserDoorModalProps = {
     userDoor?: any;
     showModalAdd?: any;
     setShowModalAdd?: any;
+    showModalDeleteUser?: any;
+    setShowModalDeleteUser?: any;
     refreshUsers?: () => void;
     onClose: () => void;
 }
@@ -590,7 +592,7 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
                                     {availableUsers.map((user: any) => (
                                         <TableRow key={user.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                                             <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                                <input type="checkbox" onChange={() => handleCheckboxChange(user.id)}/>
+                                                <input type="checkbox" onChange={() => handleCheckboxChange(user.id)} />
                                             </TableCell>
                                             <TableCell>{user.id}</TableCell>
                                             <TableCell>{user.name}</TableCell>
@@ -603,7 +605,85 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
                             </Table>
                         </div>
                         <div className="mt-2">
-                            <ButtonFormComponent color="greenFill" text="Add User" />
+                            <ButtonFormComponent color="greenFill" text="Add Users" />
+                        </div>
+                    </form>
+                </div>
+            </Modal.Body>
+        </Modal>
+    );
+}
+
+export function DeleteUserDoorModal(props: UserDoorModalProps) {
+    const { users, door, userDoor, showModalDeleteUser, setShowModalDeleteUser, onClose } = props;
+    const [validation, setValidation] = useState({});
+    const [selectedUserIds, setSelectedUserIds] = useState<number[]>([]);
+
+    const handleCheckboxChange = (userId: number) => {
+        setSelectedUserIds((prevSelectedUserIds) =>
+            prevSelectedUserIds.includes(userId)
+                ? prevSelectedUserIds.filter((id) => id !== userId)
+                : [...prevSelectedUserIds, userId]
+        );
+    };
+
+    const attachUserToDoor = async (e: any) => {
+        e.preventDefault();
+
+        try {
+            const detachRequests = selectedUserIds.map((userId) => {
+                const formData = new FormData();
+                formData.append('user_id', userId.toString());
+                formData.append('door_id', door!.id.toString());
+                return axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/user-door/detach`, formData);
+            });
+
+            await Promise.all(detachRequests);
+        } catch (error: any) {
+            if (error.response && error.response.data) {
+                setValidation(error.response.data);
+            } else {
+                setValidation({ message: "An unexpected error occurred" });
+            }
+        }
+        onClose();
+    };
+
+    return (
+        <Modal show={showModalDeleteUser} size="3xl" onClose={() => setShowModalDeleteUser(false)} popup>
+            <Modal.Header />
+            <Modal.Body>
+                <div className="space-y-3">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">Add User to This Door</h3>
+                    <form onSubmit={attachUserToDoor}>
+                        <div className="overflow-x-auto">
+                            <Table hoverable>
+                                <TableHead>
+                                    <TableHeadCell />
+                                    <TableHeadCell>Id</TableHeadCell>
+                                    <TableHeadCell>User Name</TableHeadCell>
+                                    <TableHeadCell>Role</TableHeadCell>
+                                    <TableHeadCell>Email</TableHeadCell>
+                                    <TableHeadCell>Phone</TableHeadCell>
+                                </TableHead>
+                                <TableBody className="divide-y">
+                                    {userDoor.map((user: any) => (
+                                        <TableRow key={user.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                                            <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                                <input type="checkbox" onChange={() => handleCheckboxChange(user.id)} />
+                                            </TableCell>
+                                            <TableCell>{user.id}</TableCell>
+                                            <TableCell>{user.name}</TableCell>
+                                            <TableCell>{user.role}</TableCell>
+                                            <TableCell>{user.email}</TableCell>
+                                            <TableCell>{user.phone}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </div>
+                        <div className="mt-2">
+                            <ButtonFormComponent color="redFill" text="Delete Users" />
                         </div>
                     </form>
                 </div>
