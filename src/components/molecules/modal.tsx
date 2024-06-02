@@ -507,26 +507,29 @@ export function DeleteUserModal(props: UserModalProps) {
 
 export function AddUserDoorModal(props: UserDoorModalProps) {
     const { users, door, userDoor, showModalAdd, setShowModalAdd, onClose } = props;
-
     const [validation, setValidation] = useState({});
+    const [selectedUserIds, setSelectedUserIds] = useState<number[]>([]);
+
+    const handleCheckboxChange = (userId: number) => {
+        setSelectedUserIds((prevSelectedUserIds) =>
+            prevSelectedUserIds.includes(userId)
+                ? prevSelectedUserIds.filter((id) => id !== userId)
+                : [...prevSelectedUserIds, userId]
+        );
+    };
 
     const attachUserToDoor = async (e: any) => {
         e.preventDefault();
 
-        const formData = new FormData();
-
-        formData.append('user_id', '64');
-        formData.append('door_id', door!.id);
-
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/user-door`, formData);
+            const attachRequests = selectedUserIds.map((userId) => {
+                const formData = new FormData();
+                formData.append('user_id', userId.toString());
+                formData.append('door_id', door!.id.toString());
+                return axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/user-door/attach`, formData);
+            });
 
-            if (response.status === 200 || response.status === 201) {
-
-            } else {
-                setValidation({ message: "Failed to attach the user data to door" });
-            }
-
+            await Promise.all(attachRequests);
         } catch (error: any) {
             if (error.response && error.response.data) {
                 setValidation(error.response.data);
@@ -576,6 +579,7 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
                         <div className="overflow-x-auto">
                             <Table hoverable>
                                 <TableHead>
+                                    <TableHeadCell />
                                     <TableHeadCell>Id</TableHeadCell>
                                     <TableHeadCell>User Name</TableHeadCell>
                                     <TableHeadCell>Role</TableHeadCell>
@@ -586,8 +590,9 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
                                     {availableUsers.map((user: any) => (
                                         <TableRow key={user.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                                             <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                                {user.id}
+                                                <input type="checkbox" onChange={() => handleCheckboxChange(user.id)}/>
                                             </TableCell>
+                                            <TableCell>{user.id}</TableCell>
                                             <TableCell>{user.name}</TableCell>
                                             <TableCell>{user.role}</TableCell>
                                             <TableCell>{user.email}</TableCell>
