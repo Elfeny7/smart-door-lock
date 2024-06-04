@@ -4,14 +4,14 @@ import SearchComponent from "@/components/atoms/search";
 import SidebarComponent from "@/components/organisms/sidebar";
 import { useState } from "react";
 import { AddUserModal } from "../molecules/modal";
-import UserTable from "../organisms/UserTable";
+import { UserTable } from "../organisms/Table";
 
 type Props = {
     users: Users;
     refreshUsers: () => void;
 }
 
-type Users= {
+type Users = {
     id: number;
     name: string;
     role: string;
@@ -19,7 +19,7 @@ type Users= {
     email: string;
     phone: string;
 
-    
+
 }
 
 export default function UsersTemplate({ users, refreshUsers }: Props) {
@@ -53,7 +53,7 @@ export default function UsersTemplate({ users, refreshUsers }: Props) {
                         </div>
                     </div>
                     <div className="grid grid-cols-4 gap-4">
-                        <UserTable users={users} refreshUsers={refreshUsers}/>
+                        <UserTable users={users} refreshUsers={refreshUsers} />
                     </div>
                 </div>
             </div>

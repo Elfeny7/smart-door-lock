@@ -6,12 +6,17 @@ import { useState } from "react";
 import { ButtonModalComponent } from "../atoms/button";
 import { DeleteUserModal, EditUserModal } from "../molecules/modal";
 
-type Props = {
+type UserProps = {
     users: any;
     refreshUsers: () => void;
 }
 
-const UserTable = ({ users, refreshUsers }: Props) => {
+type LogProps = {
+    logs: any;
+    refreshLogs: () => void;
+}
+
+export const UserTable = ({ users, refreshUsers }: UserProps) => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -87,4 +92,49 @@ const UserTable = ({ users, refreshUsers }: Props) => {
     );
 }
 
-export default UserTable;
+export const LogTable = ({ logs, refreshLogs }: LogProps) => {
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const rowsPerPage = 10;
+    const onPageChange = (page: number) => setCurrentPage(page);
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const selectedLogs = logs.slice(startIndex, startIndex + rowsPerPage);
+
+    return (
+        <>
+            <div className="overflow-x-auto w-[78vw]">
+                <Table hoverable>
+                    <TableHead>
+                        <TableHeadCell>Id</TableHeadCell>
+                        <TableHeadCell>Name</TableHeadCell>
+                        <TableHeadCell>Role</TableHeadCell>
+                        <TableHeadCell>Date</TableHeadCell>
+                        <TableHeadCell>Class Name</TableHeadCell>
+                        <TableHeadCell>Detail</TableHeadCell>
+                    </TableHead>
+                    <TableBody className="divide-y">
+                        {selectedLogs.map((log: any) => (
+                            <TableRow key={log.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                                <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                    {log.id}
+                                </TableCell>
+                                <TableCell>{log.name}</TableCell>
+                                <TableCell>{log.role}</TableCell>
+                                <TableCell>{log.date_time}</TableCell>
+                                <TableCell>{log.class_name}</TableCell>
+                                <TableCell>Detail</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+                <div className="flex overflow-x-auto sm:justify-center mt-4">
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={Math.ceil(logs.length / rowsPerPage)}
+                        onPageChange={onPageChange}
+                    />
+                </div>
+            </div>
+        </>
+    );
+}
