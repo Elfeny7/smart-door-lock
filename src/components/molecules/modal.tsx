@@ -542,33 +542,6 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
         onClose();
     };
 
-    const detachUserFromDoor = async (e: any) => {
-        e.preventDefault();
-
-        const formData = new FormData();
-
-        formData.append('user_id', '45');
-        formData.append('door_id', door!.id);
-
-        try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/user-door/detach`, formData);
-
-            if (response.status === 200 || response.status === 201) {
-
-            } else {
-                setValidation({ message: "Failed to attach the user data to door" });
-            }
-
-        } catch (error: any) {
-            if (error.response && error.response.data) {
-                setValidation(error.response.data);
-            } else {
-                setValidation({ message: "An unexpected error occurred" });
-            }
-        }
-        onClose();
-    };
-
     const availableUsers = users.filter((user: any) => !userDoor.some((userDoorItem: any) => userDoorItem.id === user.id));
 
     return (
@@ -615,7 +588,7 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
 }
 
 export function DeleteUserDoorModal(props: UserDoorModalProps) {
-    const { users, door, userDoor, showModalDeleteUser, setShowModalDeleteUser, onClose } = props;
+    const { door, userDoor, showModalDeleteUser, setShowModalDeleteUser, onClose } = props;
     const [validation, setValidation] = useState({});
     const [selectedUserIds, setSelectedUserIds] = useState<number[]>([]);
 
@@ -627,7 +600,7 @@ export function DeleteUserDoorModal(props: UserDoorModalProps) {
         );
     };
 
-    const attachUserToDoor = async (e: any) => {
+    const detachUserFromDoor = async (e: any) => {
         e.preventDefault();
 
         try {
@@ -655,7 +628,7 @@ export function DeleteUserDoorModal(props: UserDoorModalProps) {
             <Modal.Body>
                 <div className="space-y-3">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white">Add User to This Door</h3>
-                    <form onSubmit={attachUserToDoor}>
+                    <form onSubmit={detachUserFromDoor}>
                         <div className="overflow-x-auto">
                             <Table hoverable>
                                 <TableHead>
