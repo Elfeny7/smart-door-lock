@@ -7,6 +7,7 @@ import axios from "axios";
 import { deleteDoor } from "@/services/doorService";
 import { useRouter } from 'next/navigation'
 import { Door, User } from "@/interfaces/Types";
+import SearchComponent from "../atoms/search";
 
 type DoorModalProps = {
     door?: Door;
@@ -500,6 +501,22 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
     const { users, door, userDoor, showModalAdd, setShowModalAdd, onClose } = props;
     const [validation, setValidation] = useState({});
     const [selectedUserIds, setSelectedUserIds] = useState<number[]>([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredUsers, setFilteredUsers] = useState<User[]>(users);
+
+    useEffect(() => {
+        if (searchTerm === "") {
+            setFilteredUsers(users);
+        } else {
+            const filtered = users.filter((user: User) =>
+                user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.phone.includes(searchTerm)
+            );
+            setFilteredUsers(filtered);
+        }
+    }, [searchTerm, users]);
 
     const handleCheckboxChange = (userId: number) => {
         setSelectedUserIds((prevSelectedUserIds) =>
@@ -531,7 +548,7 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
         onClose();
     };
 
-    const availableUsers = users.filter((user: any) => !userDoor.some((userDoorItem: any) => userDoorItem.id === user.id));
+    const availableUsers = filteredUsers.filter((user: any) => !userDoor.some((userDoorItem: any) => userDoorItem.id === user.id));
 
     return (
         <Modal show={showModalAdd} size="3xl" onClose={() => setShowModalAdd(false)} popup>
@@ -539,6 +556,7 @@ export function AddUserDoorModal(props: UserDoorModalProps) {
             <Modal.Body>
                 <div className="space-y-3">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white">Add User to This Door</h3>
+                    <SearchComponent onSearch={setSearchTerm} />
                     <form onSubmit={attachUserToDoor}>
                         <div className="overflow-x-auto">
                             <Table hoverable>
@@ -580,6 +598,22 @@ export function DeleteUserDoorModal(props: UserDoorModalProps) {
     const { door, userDoor, showModalDeleteUser, setShowModalDeleteUser, onClose } = props;
     const [validation, setValidation] = useState({});
     const [selectedUserIds, setSelectedUserIds] = useState<number[]>([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredUsers, setFilteredUsers] = useState<User[]>(userDoor);
+
+    useEffect(() => {
+        if (searchTerm === "") {
+            setFilteredUsers(userDoor);
+        } else {
+            const filtered = userDoor.filter((user: User) =>
+                user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.phone.includes(searchTerm)
+            );
+            setFilteredUsers(filtered);
+        }
+    }, [searchTerm, userDoor]);
 
     const handleCheckboxChange = (userId: number) => {
         setSelectedUserIds((prevSelectedUserIds) =>
@@ -617,6 +651,7 @@ export function DeleteUserDoorModal(props: UserDoorModalProps) {
             <Modal.Body>
                 <div className="space-y-3">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white">Add User to This Door</h3>
+                    <SearchComponent onSearch={setSearchTerm} />
                     <form onSubmit={detachUserFromDoor}>
                         <div className="overflow-x-auto">
                             <Table hoverable>
@@ -629,7 +664,7 @@ export function DeleteUserDoorModal(props: UserDoorModalProps) {
                                     <TableHeadCell>Phone</TableHeadCell>
                                 </TableHead>
                                 <TableBody className="divide-y">
-                                    {userDoor.map((user: any) => (
+                                    {filteredUsers.map((user: any) => (
                                         <TableRow key={user.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                                             <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                                 <input type="checkbox" onChange={() => handleCheckboxChange(user.id)} />
