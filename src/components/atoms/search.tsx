@@ -27,14 +27,14 @@ export default function SearchComponent({ onSearch }: SearchComponentProps): JSX
                     value={searchTerm}
                     onChange={handleSearch}
                 />
-                <TERipple>
+                {/* <TERipple>
                     <button
                         className="relative z-[2] rounded-r border-2 border-blue-500 px-6 py-3 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                         type="button"
                         id="button-addon3">
                         Search
                     </button>
-                </TERipple>
+                </TERipple> */}
             </div>
         </div>
     );
