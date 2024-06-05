@@ -1,4 +1,5 @@
 "use client";
+import { User, Door } from "@/interfaces/Types";
 import { fetchDoorById } from "@/services/doorService";
 import DoorDetailTemplate from "../components/templates/DoorDetailTemplate";
 import { useCallback, useEffect, useState } from "react";
@@ -10,9 +11,9 @@ type Props = {
 }
 
 const DoorDetailPage = ({ doorId }: Props) => {
-    const [door, setDoor] = useState(null);
-    const [users, setUsers] = useState(null);
-    const [userDoor, setUserDoor] = useState(null);
+    const [door, setDoor] = useState<Door | null>(null);
+    const [users, setUsers] = useState<User[]>([]);
+    const [userDoor, setUserDoor] = useState<User[]>([]);
 
     const getDoorDetails = useCallback(async () => {
         try {

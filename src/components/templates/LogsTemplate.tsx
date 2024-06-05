@@ -1,16 +1,16 @@
 "use client";
 
+import { Log } from "@/interfaces/Types";
 import SearchComponent from "../atoms/search";
 import DropdownComponent from "../molecules/dropdown";
 import SidebarComponent from "../organisms/sidebar";
 import { LogTable } from "../organisms/Table";
 
 type Props = {
-    logs: any;
-    refreshLogs: () => void;
+    logs: Log[];
 }
 
-function LogsTemplate({ logs, refreshLogs }: Props) {
+function LogsTemplate({ logs }: Props) {
     if (!logs) {
         return <div>Loading...</div>;
     }
@@ -32,7 +32,7 @@ function LogsTemplate({ logs, refreshLogs }: Props) {
                         </div>
                     </div>
                     <div className="w-full">
-                        <LogTable logs={logs} refreshLogs={refreshLogs} />
+                        <LogTable logs={logs} />
                     </div>
                 </div>
             </div>

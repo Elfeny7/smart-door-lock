@@ -6,6 +6,7 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import axios from "axios";
 import { deleteDoor } from "@/services/doorService";
 import { useRouter } from 'next/navigation'
+import { Door, User } from "@/interfaces/Types";
 
 type DoorModalProps = {
     door?: Door;
@@ -15,15 +16,6 @@ type DoorModalProps = {
     setShowModalDelete?: any;
     onClose: () => void;
 }
-
-type Door = {
-    id: number;
-    name: string;
-    location: string;
-    class_name: string;
-    description: string;
-};
-
 type UserModalProps = {
     user?: User;
     showModal?: any;
@@ -35,15 +27,6 @@ type UserModalProps = {
     refreshUsers?: () => void;
     onClose: () => void;
 }
-
-type User = {
-    id: number;
-    name: string;
-    role: string;
-    pin: string;
-    phone: string;
-    email: string;
-};
 
 type UserDoorModalProps = {
     users?: any;
@@ -376,7 +359,7 @@ export function EditUserModal(props: UserModalProps) {
 
     const [name, setName] = useState(user!.name);
     const [role, setRole] = useState(user!.role);
-    const [pin, setPin] = useState(user!.pin);
+    const [pin, setPin] = useState(user!.pin.toString());
     const [phone, setPhone] = useState(user!.phone);
     const [email, setEmail] = useState(user!.email);
 

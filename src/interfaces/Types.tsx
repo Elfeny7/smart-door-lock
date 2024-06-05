@@ -6,3 +6,20 @@ export type User = {
     email: string;
     phone: string;
 }
+
+export type Door = {
+    id: number;
+    name: string;
+    location: string;
+    class_name: string;
+    description: string;
+};
+
+export type Log = {
+    id: number;
+    name: string;
+    role: string;
+    date: string;
+    class_name: string;
+    image: string;
+};

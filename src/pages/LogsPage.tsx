@@ -2,10 +2,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { fetchLogs } from "@/services/logService";
 import LogsTemplate from "@/components/templates/LogsTemplate";
+import { Log } from "@/interfaces/Types";
 
 
 export const LogsPage = () => {
-    const [logs, setLogs] = useState(null);
+    const [logs, setLogs] = useState<Log[]>([]);
 
     const getLogs = useCallback(async () => {
         try {
@@ -26,6 +27,6 @@ export const LogsPage = () => {
     }, [getLogs]);
 
     return (
-        <LogsTemplate logs={logs} refreshLogs={getLogs} />
+        <LogsTemplate logs={logs} />
     );
 }

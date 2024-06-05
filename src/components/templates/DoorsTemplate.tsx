@@ -1,13 +1,13 @@
 "use client";
 import { ButtonModalComponent } from "@/components/atoms/button";
 import CardComponent from "@/components/molecules/card";
-import SearchComponent from "@/components/atoms/search";
-import SidebarComponent from "@/components/organisms/sidebar"; import Link from "next/link";
+import SidebarComponent from "@/components/organisms/sidebar";
 import { useState } from "react";
 import { AddDoorModal } from "../molecules/modal";
+import { Door } from "@/interfaces/Types";
 
 type Props = {
-  doors: any;
+  doors: Door[];
   refreshDoors: () => void;
 }
 

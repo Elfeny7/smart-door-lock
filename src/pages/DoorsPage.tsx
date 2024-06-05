@@ -1,10 +1,11 @@
 "use client";
 import DoorsTemplate from "@/components/templates/DoorsTemplate";
+import { Door } from "@/interfaces/Types";
 import { fetchDoors } from "@/services/doorService";
 import { useCallback, useEffect, useState } from "react";
 
 const DoorsPage = () => {
-    const [doors, setDoors] = useState(null);
+    const [doors, setDoors] = useState<Door[]>([]);
 
     const getDoors = useCallback(async () => {
         try {

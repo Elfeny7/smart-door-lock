@@ -1,23 +1,15 @@
 "use client";
+import { User, Door } from "@/interfaces/Types";
 import ButtonComponent, { ButtonModalComponent } from "@/components/atoms/button";
 import DropdownComponent from "@/components/molecules/dropdown";
 import EditDetailDoorModal, { AddUserDoorModal, DeleteDoorModal, DeleteUserDoorModal } from "@/components/molecules/modal";
 import { useState } from "react";
 import { UserDoorTableComponent } from "../organisms/Table";
 
-
-type Door = {
-    id: number;
-    name: string;
-    location: string;
-    class_name: string;
-    description: string;
-};
-
 type Props = {
     door: Door | null;
-    userDoor: any;
-    users: any;
+    userDoor: User[];
+    users: User[];
     refreshDoorDetails: () => void;
     refreshUserDoor: () => void;
 };
@@ -51,7 +43,7 @@ export default function DoorDetailTemplate({ door, users, userDoor, refreshDoorD
         setShowModalAdd(false);
         refreshUserDoor();
     };
-    
+
     const openModalDeleteUser = () => {
         setShowModalDeleteUser(true);
     };
@@ -69,7 +61,7 @@ export default function DoorDetailTemplate({ door, users, userDoor, refreshDoorD
             <div className="p-8">
                 <div className="flex flex-row py-6 gap-8">
                     <ButtonComponent text="←" color="primary" link="../doors" size="back" />
-                    <div className="font-bold text-3xl">{door!.name}</div>
+                    <div className="font-bold text-3xl">{door.name}</div>
                 </div>
                 <div className="flex flex-row gap-8">
                     <div className="flex-2 bg-white rounded-lg px-12 py-12 h-fit w-[25vw] sticky top-8">

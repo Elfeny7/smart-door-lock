@@ -5,18 +5,19 @@ import { Pagination } from "flowbite-react";
 import { useState } from "react";
 import { ButtonModalComponent } from "../atoms/button";
 import { DeleteUserModal, DetailLogModal, EditUserModal } from "../molecules/modal";
+import { Log, User } from "@/interfaces/Types";
 
 type UserProps = {
-    users: any;
+    users: User[];
     refreshUsers: () => void;
 }
 
 type LogProps = {
-    logs: any;
+    logs: Log[];
 }
 
 type UserDoorProps = {
-    userDoor: any;
+    userDoor: User[];
 }
 
 export const UserTable = ({ users, refreshUsers }: UserProps) => {

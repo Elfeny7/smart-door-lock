@@ -38,6 +38,5 @@ export default function CardComponent(props: CardProps) {
                 </div>
             </Card>
         </Flowbite>
-
     );
 }
