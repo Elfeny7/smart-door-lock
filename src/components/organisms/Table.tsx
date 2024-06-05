@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from 
 import { Pagination } from "flowbite-react";
 import { useState } from "react";
 import { ButtonModalComponent } from "../atoms/button";
-import { DeleteUserModal, EditUserModal } from "../molecules/modal";
+import { DeleteUserModal, DetailLogModal, EditUserModal } from "../molecules/modal";
 
 type UserProps = {
     users: any;
@@ -93,6 +93,17 @@ export const UserTable = ({ users, refreshUsers }: UserProps) => {
 }
 
 export const LogTable = ({ logs, refreshLogs }: LogProps) => {
+    const [selectedLog, setSelectedLog] = useState(null);
+    const [showDetailModal, setShowDetailModal] = useState(false);
+    const handleClick = (log: any) => {
+        setSelectedLog(log);
+        setShowDetailModal(true);
+    };
+    const closeDetailModal = () => {
+        setShowDetailModal(false);
+        setSelectedLog(null);
+        refreshLogs();
+    }
 
     const [currentPage, setCurrentPage] = useState(1);
     const rowsPerPage = 10;
@@ -122,7 +133,9 @@ export const LogTable = ({ logs, refreshLogs }: LogProps) => {
                                 <TableCell>{log.role}</TableCell>
                                 <TableCell>{log.date_time}</TableCell>
                                 <TableCell>{log.class_name}</TableCell>
-                                <TableCell>Detail</TableCell>
+                                <TableCell>
+                                    <ButtonModalComponent text="Detail" color="primary" onClick={() => handleClick(log)} />
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -135,6 +148,7 @@ export const LogTable = ({ logs, refreshLogs }: LogProps) => {
                     />
                 </div>
             </div>
+            {selectedLog && showDetailModal ? (<DetailLogModal showDetailModal={showDetailModal} setShowDetailModal={setShowDetailModal} log={selectedLog!} onClose={closeDetailModal} />) : null}
         </>
     );
 }

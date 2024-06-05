@@ -57,6 +57,13 @@ type UserDoorModalProps = {
     onClose: () => void;
 }
 
+type LogModalProps = {
+    log?: any;
+    showDetailModal?: any;
+    setShowDetailModal?: any;
+    onClose: () => void;
+}
+
 export function AddDoorModal(props: DoorModalProps) {
     const { showModal, setShowModal, onClose } = props;
 
@@ -659,6 +666,39 @@ export function DeleteUserDoorModal(props: UserDoorModalProps) {
                             <ButtonFormComponent color="redFill" text="Delete Users" />
                         </div>
                     </form>
+                </div>
+            </Modal.Body>
+        </Modal>
+    );
+}
+
+export function DetailLogModal(props: LogModalProps) {
+    const { showDetailModal, setShowDetailModal, onClose } = props;
+    const [validation, setValidation] = useState({});
+
+    const storeUser = async (e: any) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/users`);
+
+        } catch (error: any) {
+            if (error.response && error.response.data) {
+                setValidation(error.response.data);
+            } else {
+                setValidation({ message: "An unexpected error occurred" });
+            }
+        }
+        onClose();
+    };
+
+    return (
+        <Modal show={showDetailModal} size="md" onClose={() => setShowDetailModal(false)} popup>
+            <Modal.Header />
+            <Modal.Body>
+                <div className="space-y-3">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">Log Detail</h3>
+                    
                 </div>
             </Modal.Body>
         </Modal>
