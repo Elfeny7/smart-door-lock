@@ -6,13 +6,13 @@ import SidebarComponent from "@/components/sidebar";
 export default function Logs() {
     return (
         <>
-            <div className="flex flex-row">
+            <div className="flex flex-row h-screen">
                 <div className="h-screen sticky top-0">
                     <SidebarComponent activePage="logs" />
                 </div>
-                <div className="p-8 max-w-full">
-                    <div className="w-full-auto rounded-lg my-4 py-4">
-                        <div className="flex flex-row justify-between items-center pl-4">
+                <div className="flex-1 p-8 max-w-full overflow-y-auto">
+                    <div className="w-full rounded-lg my-4 py-4 bg-white shadow-md">
+                        <div className="flex flex-row justify-between items-center px-4">
                             <h1 className="font-bold text-3xl">Active Log</h1>
                             <div className="flex items-center gap-3">
                                 <SearchComponent />
@@ -26,5 +26,5 @@ export default function Logs() {
                 </div>
             </div>
         </>
-    )
+    );
 }
