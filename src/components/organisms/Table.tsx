@@ -99,11 +99,6 @@ export const LogTable = ({ logs, refreshLogs }: LogProps) => {
         setSelectedLog(log);
         setShowDetailModal(true);
     };
-    const closeDetailModal = () => {
-        setShowDetailModal(false);
-        setSelectedLog(null);
-        refreshLogs();
-    }
 
     const [currentPage, setCurrentPage] = useState(1);
     const rowsPerPage = 10;

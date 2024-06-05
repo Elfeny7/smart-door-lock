@@ -15,8 +15,14 @@ export const LogsPage = () => {
             console.error("Error fetching logs details:", error);
         }
     }, []);
+
     useEffect(() => {
         getLogs();
+        const interval = setInterval(() => {
+            getLogs();
+        }, 10000);
+
+        return () => clearInterval(interval);
     }, [getLogs]);
 
     return (
