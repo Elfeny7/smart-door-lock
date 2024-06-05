@@ -5,24 +5,15 @@ import SidebarComponent from "@/components/organisms/sidebar";
 import { useState } from "react";
 import { AddUserModal } from "../molecules/modal";
 import { UserTable } from "../organisms/Table";
+import { User } from "@/interfaces/Types";
 
 type Props = {
-    users: Users;
+    users: User[];
     refreshUsers: () => void;
+    onSearch: (term: string) => void;
 }
 
-type Users = {
-    id: number;
-    name: string;
-    role: string;
-    pin: number;
-    email: string;
-    phone: string;
-
-
-}
-
-export default function UsersTemplate({ users, refreshUsers }: Props) {
+export default function UsersTemplate({ users, refreshUsers, onSearch }: Props) {
 
     const [showModal, setShowModal] = useState(false);
     const openModal = () => { setShowModal(true); };
@@ -45,7 +36,7 @@ export default function UsersTemplate({ users, refreshUsers }: Props) {
                     <h1 className="font-bold text-3xl my-4">Doors Overview</h1>
                     <div className="w-[78vw] bg-white rounded-lg my-4 py-4">
                         <div className="flex flex-row pl-4 justify-between">
-                            <SearchComponent />
+                            <SearchComponent onSearch={onSearch}/>
                             <div className="mr-4">
                                 <ButtonModalComponent onClick={openModal} text="+ Add New User" color="greenFill" />
                                 <AddUserModal showModal={showModal} setShowModal={setShowModal} onClose={closeModal} />
