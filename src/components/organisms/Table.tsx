@@ -13,7 +13,10 @@ type UserProps = {
 
 type LogProps = {
     logs: any;
-    refreshLogs: () => void;
+}
+
+type UserDoorProps = {
+    userDoor: any;
 }
 
 export const UserTable = ({ users, refreshUsers }: UserProps) => {
@@ -92,7 +95,7 @@ export const UserTable = ({ users, refreshUsers }: UserProps) => {
     );
 }
 
-export const LogTable = ({ logs, refreshLogs }: LogProps) => {
+export const LogTable = ({ logs }: LogProps) => {
     const [selectedLog, setSelectedLog] = useState(null);
     const [showDetailModal, setShowDetailModal] = useState(false);
     const handleClick = (log: any) => {
@@ -145,5 +148,35 @@ export const LogTable = ({ logs, refreshLogs }: LogProps) => {
             </div>
             {selectedLog && showDetailModal ? (<DetailLogModal showDetailModal={showDetailModal} setShowDetailModal={setShowDetailModal} log={selectedLog!} />) : null}
         </>
+    );
+}
+
+export function UserDoorTableComponent({ userDoor }: UserDoorProps) {
+
+    return (
+        <div className="overflow-x-auto">
+            <Table hoverable>
+                <TableHead>
+                    <TableHeadCell>Id</TableHeadCell>
+                    <TableHeadCell>User Name</TableHeadCell>
+                    <TableHeadCell>Role</TableHeadCell>
+                    <TableHeadCell>Email</TableHeadCell>
+                    <TableHeadCell>Phone</TableHeadCell>
+                </TableHead>
+                <TableBody className="divide-y">
+                    {userDoor.map((user: any) => (
+                        <TableRow key={user.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                            <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                {user.id}
+                            </TableCell>
+                            <TableCell>{user.name}</TableCell>
+                            <TableCell>{user.role}</TableCell>
+                            <TableCell>{user.email}</TableCell>
+                            <TableCell>{user.phone}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </div>
     );
 }

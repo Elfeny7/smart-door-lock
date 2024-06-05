@@ -3,7 +3,7 @@ import ButtonComponent, { ButtonModalComponent } from "@/components/atoms/button
 import DropdownComponent from "@/components/molecules/dropdown";
 import EditDetailDoorModal, { AddUserDoorModal, DeleteDoorModal, DeleteUserDoorModal } from "@/components/molecules/modal";
 import { useState } from "react";
-import UserDoorTableComponent from "../organisms/UserDoorTable";
+import { UserDoorTableComponent } from "../organisms/Table";
 
 
 type Door = {
@@ -115,7 +115,6 @@ export default function DoorDetailTemplate({ door, users, userDoor, refreshDoorD
                             <div className="flex flex-row gap-2">
                                 <ButtonModalComponent onClick={openModalAdd} text="Add User to Door" color="greenFill" />
                                 <ButtonModalComponent onClick={openModalDeleteUser} text="Delete User from Door" color="redFill" />
-                                <DropdownComponent title="Filter" items={["Only Mahasiswa", "Only Dosen"]} />
                             </div>
                             <UserDoorTableComponent userDoor={userDoor} />
                         </div>
