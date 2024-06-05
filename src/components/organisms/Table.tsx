@@ -148,7 +148,7 @@ export const LogTable = ({ logs, refreshLogs }: LogProps) => {
                     />
                 </div>
             </div>
-            {selectedLog && showDetailModal ? (<DetailLogModal showDetailModal={showDetailModal} setShowDetailModal={setShowDetailModal} log={selectedLog!} onClose={closeDetailModal} />) : null}
+            {selectedLog && showDetailModal ? (<DetailLogModal showDetailModal={showDetailModal} setShowDetailModal={setShowDetailModal} log={selectedLog!} />) : null}
         </>
     );
 }
