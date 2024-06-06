@@ -1,4 +1,5 @@
 'use client';
+import Login from '@/app/login/page';
 import { Sidebar } from 'flowbite-react';
 
 interface SidebarProps {
@@ -43,6 +44,9 @@ export default function SidebarComponent(props: SidebarProps) {
                     <Sidebar.Item className={logsStyle} href="logs">
                         Log
                     </Sidebar.Item>
+                    {/* <Sidebar.Item className={loginStyle} href="login">
+                        Login
+                    </Sidebar.Item> */}
                 </Sidebar.ItemGroup>
             </Sidebar.Items>
         </Sidebar>
