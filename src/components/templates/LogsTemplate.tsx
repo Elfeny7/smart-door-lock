@@ -25,10 +25,7 @@ function LogsTemplate({ logs }: Props) {
                     <div className="w-full-auto rounded-lg my-4 py-4">
                         <div className="flex flex-row justify-between items-center pl-4">
                             <h1 className="font-bold text-3xl">Active Log</h1>
-                            <div className="flex items-center gap-3">
-                                <SearchComponent />
-                                <DropdownComponent title="Filter" items={["Berdasarkan hari", "Berdasarkan bulan"]} />
-                            </div>
+                            <SearchComponent />
                         </div>
                     </div>
                     <div className="w-full">
