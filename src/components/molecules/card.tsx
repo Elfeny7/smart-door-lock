@@ -1,14 +1,13 @@
 import { Card, CustomFlowbiteTheme, Flowbite } from "flowbite-react";
-import ButtonComponent, { ButtonLinkComponent } from "./button";
-import { Door } from "./model/door";
+import ButtonComponent, { ButtonCardComponent } from "../atoms/button";
+import { Door } from "../../dummy/model/door";
 
 interface CardProps {
     doorsId: number;
-    title: string;
-    floor: string;
     name: string;
-    desc: string;
-    data?: any;
+    location: string;
+    class_name: string;
+    description: string;
 }
 
 const customTheme: CustomFlowbiteTheme = {
@@ -21,7 +20,7 @@ const customTheme: CustomFlowbiteTheme = {
 };
 
 export default function CardComponent(props: CardProps) {
-    const { title, floor, name, desc, doorsId, data } = props;
+    const { doorsId, name, location, class_name, description } = props;
     var linked = "doors/" + doorsId || "error";
 
     return (
@@ -29,16 +28,15 @@ export default function CardComponent(props: CardProps) {
             <Card>
                 <div className="flex flex-col space-y-3">
                     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        {title}
+                        {name}
                     </h5>
-                    <p className="font-normal text-gray-700 dark:text-gray-400 text-xl">{floor} - {name}</p>
-                    <p className="font-normal text-gray-700 dark:text-gray-400">{desc}</p>
+                    <p className="font-normal text-gray-700 dark:text-gray-400 text-xl">{location} - {class_name}</p>
+                    <p className="font-normal text-gray-700 dark:text-gray-400">{description}</p>
                 </div>
                 <div className="mt-auto mx-auto">
-                    <ButtonLinkComponent text="Detail" size="door" color="primary" link={linked} data={data}/>
+                    <ButtonCardComponent text="Detail" size="door" color="primary" link={linked}/>
                 </div>
             </Card>
         </Flowbite>
-
     );
 }

@@ -1,4 +1,4 @@
-import SidebarComponent from "@/components/sidebar";
+import SidebarComponent from "@/components/organisms/sidebar";
 
 export default function MyPage() {
   return (
