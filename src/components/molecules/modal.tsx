@@ -6,8 +6,9 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import axios from "axios";
 import { deleteDoor } from "@/services/doorService";
 import { useRouter } from 'next/navigation'
-import { Door, User } from "@/interfaces/Types";
+import { Door, Log, User } from "@/interfaces/Types";
 import SearchComponent from "../atoms/search";
+import { LogTable } from "../organisms/Table";
 
 type DoorModalProps = {
     door?: Door;
@@ -42,9 +43,13 @@ type UserDoorModalProps = {
 }
 
 type LogModalProps = {
-    log?: any;
+    log?: Log;
+    filteredLogs?: Log[];
     showDetailModal?: any;
     setShowDetailModal?: any;
+    showSearchLogModal?: any;
+    setShowSearchLogModal?: any;
+    onSearch?: (term: string) => void;
 }
 
 export function AddDoorModal(props: DoorModalProps) {
@@ -699,7 +704,25 @@ export function DetailLogModal(props: LogModalProps) {
             <Modal.Body>
                 <div className="space-y-3">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white">Log Detail</h3>
-                    <img src={`${process.env.NEXT_PUBLIC_API_BACKEND}/storage/image/${log.image}`} width="500" className="rounded-3" />
+                    <img src={`${process.env.NEXT_PUBLIC_API_BACKEND}/storage/image/${log!.image}`} width="500" className="rounded-3" />
+                </div>
+            </Modal.Body>
+        </Modal>
+    );
+}
+
+export function SearchLogModal(props: LogModalProps) {
+    const { filteredLogs, showSearchLogModal, setShowSearchLogModal, onSearch } = props;
+    const [validation, setValidation] = useState({});
+
+    return (
+        <Modal show={showSearchLogModal} size="7xl" onClose={() => setShowSearchLogModal(false)} popup>
+            <Modal.Header />
+            <Modal.Body>
+                <div className="space-y-3 p-4">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">Log Detail</h3>
+                    <SearchComponent onSearch={onSearch!} />
+                    <LogTable logs={filteredLogs!} />
                 </div>
             </Modal.Body>
         </Modal>

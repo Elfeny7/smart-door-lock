@@ -19,7 +19,7 @@ export type Log = {
     id: number;
     name: string;
     role: string;
-    date: string;
+    date_time: string;
     class_name: string;
     image: string;
 };
