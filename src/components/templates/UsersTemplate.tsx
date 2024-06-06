@@ -33,7 +33,7 @@ export default function UsersTemplate({ users, refreshUsers, onSearch }: Props) 
                     <SidebarComponent activePage="users" />
                 </div>
                 <div className="p-8">
-                    <h1 className="font-bold text-3xl my-4">Doors Overview</h1>
+                    <h1 className="font-bold text-3xl my-4">Users Overview</h1>
                     <div className="w-[78vw] bg-white rounded-lg my-4 py-4">
                         <div className="flex flex-row pl-4 justify-between">
                             <SearchComponent onSearch={onSearch}/>
