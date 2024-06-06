@@ -1,10 +1,9 @@
-import { Button, Card, } from "flowbite-react";
-import LoginComponent from "@/components/templates/login";
+import LoginPage from "@/pages/LoginPage";
 
 export default function Login() {
   return (
-    <Card className="">
-     <LoginComponent/>
-    </Card>
+    <>
+      <LoginPage />
+    </>
   );
 }

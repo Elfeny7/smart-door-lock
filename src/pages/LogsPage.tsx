@@ -3,9 +3,13 @@ import { useCallback, useEffect, useState } from "react";
 import { fetchLogs } from "@/services/logService";
 import LogsTemplate from "@/components/templates/LogsTemplate";
 import { Log } from "@/interfaces/Types";
+import getTokenService from "@/services/authService";
+import { useRouter } from "next/navigation";
 
 
 export const LogsPage = () => {
+    const token = getTokenService();
+    const router = useRouter();
     const [logs, setLogs] = useState<Log[]>([]);
     const [filteredLogs, setFilteredLogs] = useState<Log[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -20,6 +24,9 @@ export const LogsPage = () => {
     }, []);
 
     useEffect(() => {
+        if (!token) {
+            router.push('/login');
+        }
         getLogs();
         const interval = setInterval(() => {
             getLogs();
@@ -43,6 +50,6 @@ export const LogsPage = () => {
     }, [searchTerm, logs]);
 
     return (
-        <LogsTemplate logs={logs} filteredLogs={filteredLogs} onSearch={setSearchTerm} />
+        <LogsTemplate logs={logs} filteredLogs={filteredLogs} onSearch={setSearchTerm} token={token} />
     );
 }

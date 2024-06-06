@@ -5,12 +5,16 @@ import DoorDetailTemplate from "../components/templates/DoorDetailTemplate";
 import { useCallback, useEffect, useState } from "react";
 import { fetchUsersByDoorId } from "@/services/userDoorService";
 import { fetchUsers } from "@/services/userService";
+import getTokenService from "@/services/authService";
+import { useRouter } from "next/navigation";
 
 type Props = {
     doorId: any
 }
 
 const DoorDetailPage = ({ doorId }: Props) => {
+    const token = getTokenService();
+    const router = useRouter();
     const [door, setDoor] = useState<Door | null>(null);
     const [users, setUsers] = useState<User[]>([]);
     const [userDoor, setUserDoor] = useState<User[]>([]);
@@ -36,6 +40,9 @@ const DoorDetailPage = ({ doorId }: Props) => {
     }, [doorId]);
 
     useEffect(() => {
+        if (!token) {
+            router.push('/login');
+        }
         getDoorDetails();
         getUserByDoor();
     }, [getDoorDetails, getUserByDoor]);

@@ -11,9 +11,10 @@ type Props = {
     logs: Log[];
     filteredLogs: Log[];
     onSearch: (term: string) => void;
+    token?: string;
 }
 
-function LogsTemplate({ logs, filteredLogs, onSearch }: Props) {
+function LogsTemplate({ logs, filteredLogs, onSearch, token }: Props) {
     const [showModal, setShowModal] = useState(false);
     const openModal = () => { setShowModal(true); };
     const closeModal = () => { setShowModal(false); };
@@ -26,7 +27,7 @@ function LogsTemplate({ logs, filteredLogs, onSearch }: Props) {
         <>
             <div className="flex flex-row">
                 <div className="h-screen sticky top-0">
-                    <SidebarComponent activePage="logs" />
+                    <SidebarComponent activePage="logs" token={token} />
                 </div>
                 <div className="p-8 max-w-full">
                     <div className="w-full-auto rounded-lg my-4 py-4">
