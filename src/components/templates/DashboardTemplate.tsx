@@ -70,7 +70,7 @@ export default function DashboardTemplate({ token }: DashboardProps) {
                         </div>
                         <div className="bg-white rounded-md h-[80vh]">
                             <div className="p-10">
-                                <ChartLine />
+                                {/* <ChartLine /> */}
                             </div>
                         </div>
                     </div>
