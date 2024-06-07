@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:8000/api'; 
-
 export const fetchTotalUsers = async () => {
     try {
-        const response = await axios.get(`${BASE_URL}/total-users`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/total-users`);
         return response.data.totalUsers;
     } catch (error) {
         console.error("Error fetching total users:", error);
@@ -14,7 +12,7 @@ export const fetchTotalUsers = async () => {
 
 export const fetchUserAccessedDoors = async () => {
     try {
-        const response = await axios.get(`${BASE_URL}/user-accessed-doors`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/user-accessed-doors`);
         return response.data.userAccessedDoors;
     } catch (error) {
         console.error("Error fetching user accessed doors:", error);
@@ -24,7 +22,7 @@ export const fetchUserAccessedDoors = async () => {
 
 export const fetchTotalDoors = async () => {
     try {
-        const response = await axios.get(`${BASE_URL}/total-doors`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/total-doors`);
         return response.data.totalDoors;
     } catch (error) {
         console.error("Error fetching total doors:", error);
@@ -34,7 +32,7 @@ export const fetchTotalDoors = async () => {
 
 export const fetchNewUserToday = async () => {
     try {
-        const response = await axios.get(`${BASE_URL}/new-users-today`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/new-users-today`);
         return response.data.newUserToday;
     } catch (error) {
         console.error("Error fetching new users today:", error);
