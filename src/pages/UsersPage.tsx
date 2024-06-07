@@ -3,8 +3,12 @@ import UsersTemplate from "@/components/templates/UsersTemplate";
 import { User } from "@/interfaces/Types";
 import { fetchUsers } from "@/services/userService";
 import { useCallback, useEffect, useState } from "react";
+import getTokenService from "@/services/authService";
+import { useRouter } from "next/navigation";
 
 const UsersPage = () => {
+    const token = getTokenService();
+    const router = useRouter();
     const [users, setUsers] = useState<User[]>([]);
     const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -20,6 +24,9 @@ const UsersPage = () => {
     }, []);
 
     useEffect(() => {
+        if (!token) {
+            router.push('/login');
+        }
         getUsers();
     }, [getUsers]);
 
@@ -38,7 +45,7 @@ const UsersPage = () => {
     }, [searchTerm, users]);
 
     return (
-        <UsersTemplate users={filteredUsers} refreshUsers={getUsers} onSearch={setSearchTerm} />
+        <UsersTemplate users={filteredUsers} refreshUsers={getUsers} onSearch={setSearchTerm} token={token} />
     );
 }
 

@@ -7,11 +7,12 @@ import { AddDoorModal } from "../molecules/modal";
 import { Door } from "@/interfaces/Types";
 
 type Props = {
+  token?: string;
   doors: Door[];
   refreshDoors: () => void;
 }
 
-export default function DoorsTemplate({ doors, refreshDoors }: Props) {
+export default function DoorsTemplate({ doors, refreshDoors, token }: Props) {
 
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
@@ -29,7 +30,7 @@ export default function DoorsTemplate({ doors, refreshDoors }: Props) {
     <>
       <div className="flex flex-row">
         <div className="h-screen sticky top-0">
-          <SidebarComponent activePage="doors" />
+          <SidebarComponent activePage="doors" token={token} />
         </div>
         <div className="p-8 max-w-full">
           <div className="w-[78vw] rounded-lg my-4 py-4">

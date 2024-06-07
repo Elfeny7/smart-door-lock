@@ -3,10 +3,16 @@ import { useCallback, useEffect, useState } from "react";
 import { fetchLogs } from "@/services/logService";
 import LogsTemplate from "@/components/templates/LogsTemplate";
 import { Log } from "@/interfaces/Types";
+import getTokenService from "@/services/authService";
+import { useRouter } from "next/navigation";
 
 
 export const LogsPage = () => {
+    const token = getTokenService();
+    const router = useRouter();
     const [logs, setLogs] = useState<Log[]>([]);
+    const [filteredLogs, setFilteredLogs] = useState<Log[]>([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     const getLogs = useCallback(async () => {
         try {
@@ -18,6 +24,9 @@ export const LogsPage = () => {
     }, []);
 
     useEffect(() => {
+        if (!token) {
+            router.push('/login');
+        }
         getLogs();
         const interval = setInterval(() => {
             getLogs();
@@ -26,7 +35,21 @@ export const LogsPage = () => {
         return () => clearInterval(interval);
     }, [getLogs]);
 
+    useEffect(() => {
+        if (searchTerm === "") {
+            setFilteredLogs([]);
+        } else {
+            const filtered = logs!.filter(log =>
+                log.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                log.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                log.class_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                log.date_time.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            setFilteredLogs(filtered);
+        }
+    }, [searchTerm, logs]);
+
     return (
-        <LogsTemplate logs={logs} />
+        <LogsTemplate logs={logs} filteredLogs={filteredLogs} onSearch={setSearchTerm} token={token} />
     );
 }
